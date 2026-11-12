@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 1 · O segredo do 100</title>
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/components.css">
+<script src="../assets/xp.js"></script>
+<script src="../assets/visuals.js"></script>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/forja.js"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Missão 1 de 5</span>
+  <h1>O segredo do 100</h1>
+  <p class="subtitle">Como transformar uma fração em porcentagem, igual barra de vida de jogo. ⏱ 10 minutos.</p>
+
+  <h2>❤ A barra de vida</h2>
+  <p>Seu personagem começa a fase com a vida cheia:</p>
+  <div id="hp-full"></div>
+  <p>Aí um chefão te acerta. Agora sobrou isso:</p>
+  <div id="hp-hit"></div>
+  <p>Se a vida máxima é <strong>100</strong> e você tem <strong>75</strong>, você está com <strong>75%</strong> de vida. Fácil, né? É que <em>por cento</em> quer dizer exatamente isso: <strong>“de cada cem”</strong>.<sup class="cite"><a href="#fontes">[1]</a></sup></p>
+
+  <div class="card key">
+    <h3>🔑 A regra de ouro</h3>
+    <p>Porcentagem é uma fração com <strong>100 embaixo</strong>.</p>
+    <div class="eq"><span class="hl">75%</span><span class="op">=</span><span class="frac"><span>75</span><span>100</span></span><span class="op">=</span><span>75 de cada 100</span></div>
+    <div id="grid-75"></div>
+  </div>
+
+  <div id="warmup"></div>
+
+  <h2>🛡 O problema: quase nada tem 100 pedaços</h2>
+  <p>Num jogo, seu escudo tem só <strong>4 pedaços</strong>, e 3 ainda estão inteiros. Isso é <span class="frac"><span>3</span><span>4</span></span> do escudo. Mas quanto é isso em %?</p>
+  <p>O truque: <strong>multiplicar em cima e embaixo pelo mesmo número</strong> até o de baixo virar 100. O pedaço continua do mesmo tamanho; você só cortou o escudo em mais partes (isso se chama <strong>fração equivalente</strong>).<sup class="cite"><a href="#fontes">[2]</a></sup></p>
+  <div class="eq">
+    <span class="frac"><span>3</span><span>4</span></span>
+    <span class="op">× 25 →</span>
+    <span class="frac"><span>75</span><span>100</span></span>
+    <span class="op">=</span><span class="hl">75%</span>
+  </div>
+  <p class="muted" style="text-align:center">Por que 25? Porque <strong>4 × 25 = 100</strong>. E o que faz embaixo, faz em cima: 3 × 25 = 75.</p>
+
+  <div class="card">
+    <h3>⚒ A Forja</h3>
+    <p>Escolha uma fração e descubra o <strong>multiplicador mágico</strong> que transforma o número de baixo em 100. Cada fração forjada vale +5 XP.</p>
+    <div id="forja"></div>
+  </div>
+
+  <div class="card tip">
+    <h3>⭐ As 5 frações famosas</h3>
+    <p>Elas aparecem em <em>toda</em> prova. Vale guardar de cabeça:</p>
+    <div class="eq" style="font-size:1.25rem">
+      <span><span class="frac"><span>1</span><span>2</span></span> = 50%</span>
+      <span><span class="frac"><span>1</span><span>4</span></span> = 25%</span>
+      <span><span class="frac"><span>3</span><span>4</span></span> = 75%</span>
+      <span><span class="frac"><span>1</span><span>5</span></span> = 20%</span>
+      <span><span class="frac"><span>1</span><span>10</span></span> = 10%</span>
+    </div>
+    <p>Tudo isso está na <a href="../reference/fracoes-e-porcentagem.html">folha de consulta</a>.</p>
+  </div>
+
+  <h2>👾 O chefão</h2>
+  <p>10 desafios. Acertou de primeira = +10 XP. Errou? Sem problema: leia a dica e tente de novo.</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Amanhã, antes de abrir qualquer coisa, diga em voz alta para alguém: <strong>quanto é 1/4, 3/4 e 1/5 em porcentagem?</strong> Lembrar sem olhar é o que faz a matéria grudar no cérebro até o dia da prova.</p>
+  </div>
+
+  <div class="card ask">
+    <h3>🙋 Ficou alguma dúvida?</h3>
+    <p>Peça para um adulto abrir o Claude e pergunte o que quiser. Ele é o seu professor nessas missões, e nenhuma pergunta é boba.</p>
+  </div>
+
+  <div class="card source" id="fontes">
+    <h3>📺 Para ver mais</h3>
+    <p><strong>Recomendado:</strong> <a href="https://pt.khanacademy.org/">Khan Academy em português</a>. Busque por <em>“porcentagem”</em> para ver vídeos curtos e exercícios que se corrigem sozinhos.</p>
+    <ol>
+      <li><a href="https://novaescola.org.br/planos-de-aula/fundamental/6ano/matematica/conceituando-porcentagem/1283">Nova Escola: “Conceituando porcentagem” (6º ano)</a></li>
+      <li><a href="https://novaescola.org.br/planos-de-aula/fundamental/6ano/matematica/calculando-porcentagem/1293">Nova Escola: “Calculando porcentagens”, usando a fração com 100 embaixo (fração centesimal)</a></li>
+    </ol>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="../reference/fracoes-e-porcentagem.html">📄 Folha de consulta</a>
+    <span class="muted">Missão 2: o caminho de volta (% → fração) · em breve</span>
+  </nav>
+
+  <footer>Lição 0001 · Frações e porcentagem · feita para a Vicky</footer>
+</main>
+
+<script>
+  const F = (a, b) => '<span class="frac"><span>' + a + '</span><span>' + b + '</span></span>';
+
+  XP.mount(document.getElementById('xp'));
+  HPBar.render(document.getElementById('hp-full'), 100, 100);
+  HPBar.render(document.getElementById('hp-hit'), 75, 100);
+  Grid100.render(document.getElementById('grid-75'), 75);
+
+  Quiz.mount(document.getElementById('warmup'), [
+    { text: 'Aquecimento: ' + F(30, 100) + ' é quanto em porcentagem?', input: true, answer: ['30'], suffix: '%',
+      hint: 'Se já tem 100 embaixo, a porcentagem é o número de cima!',
+      explain: '30 de cada 100 = 30%.', grid: 30 },
+  ], { id: '0001-aquecimento', title: 'Aquecimento' });
+
+  Forja.mount(document.getElementById('forja'), [[1, 2], [1, 4], [3, 5], [7, 10], [11, 20], [9, 25], [3, 50]]);
+
+  Quiz.mount(document.getElementById('boss'), [
+    { text: F(1, 2) + ' = ?', options: ['25%', '50%', '20%', '12%'], answer: 1,
+      hint: '2 × 50 = 100. E em cima?', explain: '2 × 50 = 100, então 1 × 50 = 50 → 50%. Metade da vida!', grid: 50 },
+    { text: F(3, 10) + ' = ?', input: true, answer: ['30'], suffix: '%',
+      hint: '10 × 10 = 100. Faça a mesma coisa em cima.', explain: '3 × 10 = 30 → ' + F(30, 100) + ' = 30%.', grid: 30 },
+    { text: F(3, 4) + ' = ?', options: ['75%', '34%', '70%', '43%'], answer: 0,
+      hint: 'Cuidado: não é só juntar os números! 4 × 25 = 100.', explain: '4 × 25 = 100 e 3 × 25 = 75 → 75%.', grid: 75 },
+    { text: F(2, 5) + ' = ?', input: true, answer: ['40'], suffix: '%',
+      hint: '5 × 20 = 100.', explain: '2 × 20 = 40 → ' + F(40, 100) + ' = 40%.', grid: 40 },
+    { text: 'Seu personagem tem <strong>20 corações</strong> e está com <strong>7</strong>. Quanto % de vida ele tem?', options: ['70%', '27%', '35%', '14%'], answer: 2,
+      hint: 'A fração é ' + F(7, 20) + '. Quanto vezes 20 dá 100?', explain: F(7, 20) + ' × 5 → ' + F(35, 100) + ' = 35%.', grid: 35 },
+    { text: F(9, 25) + ' = ?', input: true, answer: ['36'], suffix: '%',
+      hint: '25 × 4 = 100.', explain: '9 × 4 = 36 → 36%.', grid: 36 },
+    { text: 'Qual fração é igual a <strong>20%</strong>?', options: [F(1, 4), F(1, 5), F(2, 5), F(1, 2)], answer: 1,
+      hint: 'Teste cada uma: qual delas, forjada até 100, dá 20 em cima?', explain: F(1, 5) + ' × 20 → ' + F(20, 100) + ' = 20%.', grid: 20 },
+    { text: F(1, 4) + ' = ?', input: true, answer: ['25'], suffix: '%',
+      hint: '4 × 25 = 100.', explain: 'Um quarto da barra = 25%.', grid: 25 },
+    { text: 'Numa fase com <strong>50 baús</strong>, você abriu <strong>13</strong>. Que % dos baús você abriu?', options: ['13%', '63%', '50%', '26%'], answer: 3,
+      hint: 'A fração é ' + F(13, 50) + '. 50 × 2 = 100.', explain: '13 × 2 = 26 → 26%.', grid: 26 },
+    { text: 'Último golpe! ' + F(17, 20) + ' = ?', input: true, answer: ['85'], suffix: '%',
+      hint: '20 × 5 = 100.', explain: '17 × 5 = 85 → 85%. Chefão derrotado! 🏆', grid: 85 },
+  ], { id: '0001', title: '👾 Chefão' });
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missões: Frações e Porcentagem</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#6c3cf0">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Missões %">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/components.css">
+<script src="assets/xp.js"></script>
+<style>
+  .map { list-style: none; padding: 0; margin: 0; }
+  .map li { margin: 14px 0; }
+  .map a, .map .locked {
+    display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink);
+    background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 16px 18px;
+  }
+  .map a { border-color: var(--brand); }
+  .map a:active { transform: scale(.98); }
+  .map .n { flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+    font-weight: 900; font-size: 1.3rem; background: var(--brand); color: #fff; }
+  .map .locked { opacity: .55; }
+  .map .locked .n { background: var(--muted); }
+  .map .t { flex: 1; }
+  .map .t strong { display: block; }
+  .map .t small { color: var(--muted); }
+  .map .stars { color: var(--gold); font-size: 1.3rem; letter-spacing: .05em; white-space: nowrap; }
+  .countdown { text-align: center; font-weight: 800; }
+</style>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+  <h1>🎮 Missões de Matemática</h1>
+  <p class="subtitle">Frações e porcentagem. Zere as missões e chegue na prova jogando no modo fácil.</p>
+  <div class="card tip countdown" id="countdown"></div>
+
+  <h2>🗺 Mapa</h2>
+  <ul class="map" id="map"></ul>
+
+  <div class="card">
+    <h3>📄 <a href="reference/fracoes-e-porcentagem.html">Folha de consulta</a></h3>
+    <p>Tudo o que você já desbloqueou numa página só.</p>
+  </div>
+
+  <div class="card ask">
+    <h3>📲 Vire um app</h3>
+    <p>No celular, abra o menu do navegador e toque em <strong>“Adicionar à tela inicial”</strong>. Pronto: as missões ganham um ícone, igual a um jogo.</p>
+  </div>
+</main>
+<script>
+  // Para liberar uma missão nova: preencha "href".
+  const MISSIONS = [
+    { id: '0001', title: 'O segredo do 100', desc: 'Fração → porcentagem', href: 'lessons/0001-o-segredo-do-100.html' },
+    { id: '0002', title: 'O caminho de volta', desc: 'Porcentagem → fração' },
+    { id: '0003', title: 'Pegando a porcentagem', desc: 'Quanto é 25% de 80?' },
+    { id: '0004', title: 'A loja de skins', desc: 'Descontos e aumentos' },
+    { id: '0005', title: 'O chefão final', desc: 'Revisão para a prova' },
+  ];
+  const PROVA = new Date('2026-11-24T08:00:00');
+
+  XP.mount(document.getElementById('xp'));
+
+  const days = Math.ceil((PROVA - new Date()) / 86400000);
+  document.getElementById('countdown').textContent =
+    days > 1 ? '⏳ Faltam ' + days + ' dias para a prova' : days === 1 ? '⏳ A prova é amanhã: você consegue!' : '🏆 Boa prova!';
+
+  const map = document.getElementById('map');
+  MISSIONS.forEach((m, i) => {
+    let stars = '';
+    try {
+      const r = JSON.parse(localStorage.getItem('vicky-lesson-' + m.id) || 'null');
+      if (r) { const s = r.firstTry / r.n >= 0.9 ? 3 : r.firstTry / r.n >= 0.6 ? 2 : 1; stars = '★'.repeat(s) + '☆'.repeat(3 - s); }
+    } catch (e) {}
+    const inner = '<span class="n">' + (m.href ? i + 1 : '🔒') + '</span>' +
+      '<span class="t"><strong>Missão ' + (i + 1) + ': ' + m.title + '</strong><small>' + (m.href ? m.desc : 'Em breve') + '</small></span>' +
+      '<span class="stars">' + stars + '</span>';
+    const li = document.createElement('li');
+    li.innerHTML = m.href ? '<a href="' + m.href + '">' + inner + '</a>' : '<div class="locked">' + inner + '</div>';
+    map.appendChild(li);
+  });
+</script>
+</body>
+</html>

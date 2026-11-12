@@ -1,0 +1,59 @@
+/* Componentes de jogo: XP HUD, grade 10x10, barra de HP, quiz, forja. */
+
+/* ---------- XP HUD ---------- */
+.xp-hud {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 0 0 16px 16px;
+  font-weight: 800; font-size: .95rem; margin: -20px -18px 10px;
+}
+.xp-hud .lvl { background: var(--gold); color: var(--ink); border-radius: 8px; padding: 2px 8px; }
+.xp-hud .bar { flex: 1; height: 12px; background: #3a3755; border-radius: 99px; overflow: hidden; }
+.xp-hud .bar > i { display: block; height: 100%; background: var(--gold); width: 0; transition: width .5s; }
+.xp-pop {
+  position: fixed; left: 50%; top: 70px; transform: translateX(-50%);
+  background: var(--gold); color: var(--ink); font-weight: 900; padding: 8px 16px; border-radius: 99px;
+  animation: xp-pop 1.2s ease forwards; pointer-events: none; z-index: 20;
+}
+@keyframes xp-pop { 0% { opacity: 0; transform: translate(-50%, 10px); } 20% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; transform: translate(-50%, -30px); } }
+
+/* ---------- Grade 10x10 (inventário de 100 slots) ---------- */
+.grid100 {
+  display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px;
+  width: min(100%, 300px); aspect-ratio: 1; margin: 12px auto;
+  padding: 6px; background: var(--ink); border-radius: 12px;
+}
+.grid100 > i { background: #3a3755; border-radius: 3px; transition: background .25s; }
+.grid100 > i.on { background: var(--hp); }
+.grid100 > i.on.alt { background: var(--gold); }
+.grid100-label { text-align: center; font-weight: 800; font-size: 1.2rem; }
+
+/* ---------- Barra de HP ---------- */
+.hpbar { margin: 10px 0; }
+.hpbar .track { height: 26px; background: var(--ink); border-radius: 10px; padding: 4px; }
+.hpbar .fill { height: 100%; background: var(--hp); border-radius: 6px; transition: width .6s; }
+.hpbar .fill.low { background: var(--bad); }
+.hpbar .cap { display: flex; justify-content: space-between; font-weight: 800; font-size: .95rem; }
+
+/* ---------- Quiz ---------- */
+.quiz .q { background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 18px; margin: 16px 0; }
+.quiz .q-head { display: flex; justify-content: space-between; color: var(--muted); font-weight: 700; font-size: .9rem; }
+.quiz .q-text { font-size: 1.2rem; font-weight: 700; margin: 8px 0 14px; }
+.quiz .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.quiz .opts button { font-size: 1.25rem; min-height: 60px; }
+.quiz .opts button.right { background: var(--hp-soft); border-color: var(--hp); }
+.quiz .opts button.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.quiz .input-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.quiz .feedback { margin-top: 12px; border-radius: 12px; padding: 10px 14px; display: none; }
+.quiz .feedback.show { display: block; }
+.quiz .feedback.ok { background: var(--hp-soft); }
+.quiz .feedback.no { background: var(--bad-soft); }
+.quiz .next { margin-top: 12px; }
+.quiz .result { text-align: center; }
+.quiz .result .stars { font-size: 2.4rem; letter-spacing: .1em; }
+
+/* ---------- Forja de frações ---------- */
+.forja .pick { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.forja .pick button.sel { background: var(--brand); color: #fff; border-color: var(--brand); }
+.forja .mults { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
+.forja .msg { text-align: center; font-weight: 700; min-height: 1.6em; }

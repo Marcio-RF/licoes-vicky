@@ -1,0 +1,13 @@
+{
+  "name": "Missões: Frações e Porcentagem",
+  "short_name": "Missões %",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f5ff",
+  "theme_color": "#6c3cf0",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,111 @@
+/* Estilo compartilhado das lições da Vicky — tema "game", limpo e legível, feito para tablet. */
+:root {
+  --bg: #f7f5ff;
+  --card: #ffffff;
+  --ink: #1d1b2e;
+  --muted: #6b6785;
+  --line: #e4e0f5;
+  --brand: #6c3cf0;       /* roxo "mana" */
+  --brand-soft: #efe8ff;
+  --hp: #2bb673;          /* verde vida */
+  --hp-soft: #e3f7ec;
+  --gold: #f5a524;        /* moedas / XP */
+  --gold-soft: #fff4dc;
+  --bad: #e5484d;
+  --bad-soft: #fdecec;
+  --radius: 18px;
+  --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 19px/1.6 var(--font);
+}
+main { max-width: 720px; margin: 0 auto; padding: 20px 18px 80px; }
+
+h1, h2, h3 { line-height: 1.2; margin: 1.6em 0 .5em; }
+h1 { font-size: 2rem; margin-top: .4em; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.1rem; }
+p { margin: .6em 0; }
+a { color: var(--brand); }
+small, .muted { color: var(--muted); }
+strong { font-weight: 700; }
+.big { font-size: 1.6rem; font-weight: 800; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Cabeçalho da missão */
+.mission-tag {
+  display: inline-block; background: var(--brand); color: #fff;
+  font-weight: 800; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 999px;
+}
+.subtitle { color: var(--muted); font-size: 1.05rem; margin-top: 0; }
+
+/* Cartões */
+.card {
+  background: var(--card); border: 2px solid var(--line); border-radius: var(--radius);
+  padding: 18px 20px; margin: 18px 0;
+}
+.card.key { border-color: var(--brand); background: var(--brand-soft); }
+.card.tip { border-color: var(--gold); background: var(--gold-soft); }
+.card.ask { border-style: dashed; }
+.card > :first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+
+/* Fração empilhada: <span class="frac"><span>3</span><span>4</span></span> */
+.frac {
+  display: inline-flex; flex-direction: column; align-items: center;
+  vertical-align: middle; font-weight: 800; line-height: 1.05; margin: 0 .15em;
+}
+.frac > span:first-child { border-bottom: 3px solid currentColor; padding: 0 .2em; }
+.frac > span:last-child { padding: 0 .2em; }
+
+/* Equação em destaque */
+.eq {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .4em;
+  font-size: 1.6rem; font-weight: 800; margin: 14px 0;
+}
+.eq .op { color: var(--muted); font-weight: 600; }
+.eq .hl { color: var(--brand); }
+
+/* Botões */
+button, .btn {
+  font: inherit; font-weight: 700; cursor: pointer;
+  min-height: 52px; padding: 10px 18px; border-radius: 14px;
+  border: 2px solid var(--line); background: var(--card); color: var(--ink);
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+button:active { transform: scale(.97); }
+button.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+button:disabled { opacity: .55; cursor: default; transform: none; }
+
+input.answer {
+  font: inherit; font-size: 1.4rem; font-weight: 800; text-align: center;
+  width: 7em; min-height: 52px; border-radius: 14px; border: 2px solid var(--line); padding: 6px 10px;
+}
+input.answer:focus { outline: 3px solid var(--brand-soft); border-color: var(--brand); }
+
+/* Navegação entre lições */
+nav.lesson-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+nav.lesson-nav a { font-weight: 700; text-decoration: none; }
+
+/* Fonte recomendada / rodapé */
+.source { font-size: .95rem; }
+footer { margin-top: 30px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 12px; }
+sup.cite a { text-decoration: none; font-size: .75em; }
+
+@media (max-width: 480px) {
+  body { font-size: 18px; }
+  h1 { font-size: 1.6rem; }
+  .eq { font-size: 1.35rem; }
+}
+
+@media print {
+  body { background: #fff; font-size: 12pt; }
+  .no-print, button, .xp-hud { display: none !important; }
+  .card { break-inside: avoid; border-width: 1px; }
+  a { color: inherit; }
+}
