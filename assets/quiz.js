@@ -1,6 +1,7 @@
 // Quiz com feedback imediato, uma pergunta por vez. Feito para toque.
 // Quiz.mount(el, perguntas, { id:'0001', xp:10, title:'Chefão' })
 // Pergunta de escolha: { text, options:['25%','40%','75%','20%'], answer:2, explain, grid:75 }
+// Pergunta de fração: { text, fraction:[2,5], explain }  -> duas caixas; só aceita a forma mais simples
 // Pergunta digitada:   { text, input:true, answer:['75'], suffix:'%', explain, grid:75 }
 //   - grid (opcional): número de quadradinhos para pintar na grade 10x10 depois do acerto.
 (function () {
@@ -31,7 +32,7 @@
         const body = box.querySelector('.body');
         const fb = box.querySelector('.feedback');
 
-        function finish(ok) {
+        function finish(ok, hint) {
           if (ok) {
             done = true;
             if (!tried) { firstTry++; window.XP && XP.add(xpEach); }
@@ -47,11 +48,32 @@
           } else {
             tried = true;
             fb.className = 'feedback show no';
-            fb.innerHTML = '<strong>Quase!</strong> ' + (q.hint || 'Tente de novo — pense em quanto falta para chegar em 100.');
+            fb.innerHTML = '<strong>Quase!</strong> ' + (hint || q.hint || 'Tente de novo — pense em quanto falta para chegar em 100.');
           }
         }
 
-        if (q.input) {
+        if (q.fraction) {
+          // Resposta em fração: duas caixas (em cima / embaixo). Aceita só a forma mais simples.
+          body.innerHTML =
+            '<div class="input-row"><span class="frac-input">' +
+            '<input class="answer" inputmode="numeric" autocomplete="off" aria-label="Número de cima">' +
+            '<input class="answer" inputmode="numeric" autocomplete="off" aria-label="Número de baixo">' +
+            '</span><button class="primary">Conferir</button></div>';
+          const [top, bot] = body.querySelectorAll('input');
+          const btn = body.querySelector('button');
+          const [tn, td] = q.fraction;
+          const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+          const check = () => {
+            const a = parseInt(top.value, 10), b = parseInt(bot.value, 10);
+            if (done || !a || !b) return;
+            if (a * td !== b * tn) return finish(false);
+            if (gcd(a, b) !== 1) return finish(false, 'O valor está certo, mas <strong>' + a + '/' + b + '</strong> ainda dá para encolher! Divida em cima e embaixo pelo mesmo número.');
+            top.disabled = bot.disabled = btn.disabled = true;
+            finish(true);
+          };
+          btn.onclick = check;
+          [top, bot].forEach((x) => x.addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); }));
+        } else if (q.input) {
           body.innerHTML =
             '<div class="input-row"><input class="answer" inputmode="decimal" autocomplete="off" aria-label="Sua resposta"> ' +
             '<span class="big">' + (q.suffix || '') + '</span><button class="primary">Conferir</button></div>';
@@ -90,7 +112,8 @@
         const ratio = firstTry / n;
         const stars = ratio >= 0.9 ? 3 : ratio >= 0.6 ? 2 : 1;
         try { localStorage.setItem('vicky-lesson-' + (cfg.id || 'x'), JSON.stringify({ firstTry, n, when: new Date().toISOString() })); } catch (e) {}
-        const msg = stars === 3 ? 'Chefão derrotado sem levar dano!' : stars === 2 ? 'Vitória! Mais uma rodada e você zera.' : 'Você chegou ao fim — jogue de novo para pegar mais estrelas.';
+        const boss = /chef/i.test(cfg.title || '');
+        const msg = stars === 3 ? (boss ? 'Chefão derrotado sem levar dano!' : 'Mandou muito bem!') : stars === 2 ? 'Vitória! Mais uma rodada e você zera.' : 'Você chegou ao fim — jogue de novo para pegar mais estrelas.';
         root.innerHTML =
           '<div class="q result"><div class="stars">' + '★'.repeat(stars) + '☆'.repeat(3 - stars) + '</div>' +
           '<p class="big">' + firstTry + ' / ' + n + ' de primeira</p><p>' + msg + '</p>' +

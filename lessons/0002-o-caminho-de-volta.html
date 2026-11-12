@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 2 · O caminho de volta</title>
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/components.css">
+<script src="../assets/xp.js"></script>
+<script src="../assets/visuals.js"></script>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/encolhedor.js"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Missão 2 de 5</span>
+  <h1>O caminho de volta</h1>
+  <p class="subtitle">De porcentagem para fração, e como encolher a fração até o menor tamanho. ⏱ 10 minutos.</p>
+
+  <h2>🔁 Antes de começar: lembra da Missão 1?</h2>
+  <p>Responda sem olhar a <a href="../reference/fracoes-e-porcentagem.html">folha de consulta</a>. Puxar da memória é o que faz a matéria grudar.</p>
+  <div id="warmup"></div>
+
+  <h2>🔙 O caminho de volta é curtinho</h2>
+  <p>Na Missão 1 você levava a fração <em>até</em> o 100. Agora é o contrário. E a regra de ouro já resolve quase tudo: <strong>porcentagem é uma fração com 100 embaixo</strong>.</p>
+  <div class="eq"><span class="hl">40%</span><span class="op">=</span><span class="frac"><span>40</span><span>100</span></span></div>
+  <p>Pronto, já é uma fração! Mas a prova costuma pedir a fração na <strong>forma mais simples</strong> (também chamada de <strong>forma irredutível</strong>): com os menores números possíveis.<sup class="cite"><a href="#fontes">[1]</a></sup></p>
+
+  <div class="card key">
+    <h3>🔑 Como encolher uma fração</h3>
+    <p>Divida <strong>em cima e embaixo pelo mesmo número</strong>. O pedaço continua do mesmo tamanho; só usa menos quadradinhos para dizer a mesma coisa. Repita até não dar mais.</p>
+    <div class="eq">
+      <span class="frac"><span>40</span><span>100</span></span>
+      <span class="op">÷ 10 →</span>
+      <span class="frac"><span>4</span><span>10</span></span>
+      <span class="op">÷ 2 →</span>
+      <span class="frac"><span>2</span><span>5</span></span>
+    </div>
+    <p class="muted" style="text-align:center">40 de 100 quadradinhos é o mesmo tamanho que 2 de 5 pedaços.</p>
+  </div>
+
+  <div class="card tip">
+    <h3>🔍 Pistas para achar o divisor</h3>
+    <ul>
+      <li>Os dois terminam em <strong>0</strong>? Divida por <strong>10</strong>.</li>
+      <li>Os dois são <strong>pares</strong>? Divida por <strong>2</strong>.</li>
+      <li>Os dois terminam em <strong>0 ou 5</strong>? Divida por <strong>5</strong>.</li>
+    </ul>
+    <p>Quando nenhuma pista funciona, a fração já está no menor tamanho. 🏁</p>
+  </div>
+
+  <div class="card">
+    <h3>🔬 O Encolhedor</h3>
+    <p>Escolha uma porcentagem e vá encolhendo até a forma mais simples. Cada uma que você terminar vale +5 XP.</p>
+    <div id="encolhedor"></div>
+  </div>
+
+  <h2>👾 O chefão</h2>
+  <p>10 desafios. Nas perguntas de fração, escreva o número de cima na primeira caixa e o de baixo na segunda. A resposta só vale na forma mais simples!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Amanhã, diga em voz alta para alguém: <strong>quanto é 25%, 20% e 75% em fração?</strong> E também: <strong>quanto é 1/2 em porcentagem?</strong> Misturar os dois caminhos é exatamente o que a prova faz.</p>
+  </div>
+
+  <div class="card ask">
+    <h3>🙋 Ficou alguma dúvida?</h3>
+    <p>Peça para um adulto abrir o Claude e pergunte o que quiser. Ele é o seu professor nessas missões, e nenhuma pergunta é boba.</p>
+  </div>
+
+  <div class="card source" id="fontes">
+    <h3>📺 Para ver mais</h3>
+    <p><strong>Recomendado:</strong> <a href="https://pt.khanacademy.org/">Khan Academy em português</a>. Busque por <em>“simplificar frações”</em> e <em>“porcentagem”</em>.</p>
+    <ol>
+      <li><a href="https://novaescola.org.br/planos-de-aula/fundamental/6ano/matematica/conceituando-porcentagem/1283">Nova Escola: “Conceituando porcentagem” (6º ano)</a></li>
+    </ol>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0001-o-segredo-do-100.html">← Missão 1</a>
+    <a href="../reference/fracoes-e-porcentagem.html">📄 Folha de consulta</a>
+  </nav>
+
+  <footer>Lição 0002 · Frações e porcentagem · feita para a Vicky</footer>
+</main>
+
+<script>
+  const F = (a, b) => '<span class="frac"><span>' + a + '</span><span>' + b + '</span></span>';
+
+  XP.mount(document.getElementById('xp'));
+
+  Quiz.mount(document.getElementById('warmup'), [
+    { text: F(3, 4) + ' = ?', input: true, answer: ['75'], suffix: '%',
+      hint: 'Leve o de baixo até 100: 4 × 25 = 100.', explain: '3 × 25 = 75 → 75%.', grid: 75 },
+    { text: F(1, 5) + ' = ?', input: true, answer: ['20'], suffix: '%',
+      hint: '5 × 20 = 100.', explain: '1 × 20 = 20 → 20%.', grid: 20 },
+    { text: F(7, 20) + ' = ?', input: true, answer: ['35'], suffix: '%',
+      hint: '20 × 5 = 100.', explain: '7 × 5 = 35 → 35%.', grid: 35 },
+  ], { id: '0002-retomada', title: '🔁 Retomada', xp: 5 });
+
+  Encolhedor.mount(document.getElementById('encolhedor'), [50, 25, 20, 75, 60, 35, 8, 45]);
+
+  Quiz.mount(document.getElementById('boss'), [
+    { text: '<strong>50%</strong> em fração, na forma mais simples:', fraction: [1, 2],
+      hint: 'Comece com ' + F(50, 100) + ' e divida os dois por 10, depois por 5.', explain: F(50, 100) + ' = ' + F(1, 2) + '. Metade!', grid: 50 },
+    { text: '<strong>25%</strong> é igual a qual fração?', options: [F(2, 5), F(1, 4), F(1, 5), F(3, 4)], answer: 1,
+      hint: F(25, 100) + ': os dois dividem por 25.', explain: F(25, 100) + ' ÷ 25 → ' + F(1, 4) + '.', grid: 25 },
+    { text: 'Lembra da Missão 1? ' + F(3, 5) + ' = ?', input: true, answer: ['60'], suffix: '%',
+      hint: 'Agora é o caminho de ida: 5 × 20 = 100.', explain: '3 × 20 = 60 → 60%.', grid: 60 },
+    { text: '<strong>20%</strong> em fração, na forma mais simples:', fraction: [1, 5],
+      hint: 'Comece com ' + F(20, 100) + '. Os dois terminam em 0…', explain: F(20, 100) + ' ÷ 10 → ' + F(2, 10) + ' ÷ 2 → ' + F(1, 5) + '.', grid: 20 },
+    { text: '<strong>75%</strong> é igual a qual fração?', options: [F(3, 4), F(7, 5), F(1, 4), F(3, 5)], answer: 0,
+      hint: F(75, 100) + ': os dois terminam em 5 ou 0, e dividem por 25.', explain: F(75, 100) + ' ÷ 25 → ' + F(3, 4) + '.', grid: 75 },
+    { text: '<strong>30%</strong> em fração, na forma mais simples:', fraction: [3, 10],
+      hint: F(30, 100) + ': os dois terminam em 0.', explain: F(30, 100) + ' ÷ 10 → ' + F(3, 10) + '. Não dá para encolher mais!', grid: 30 },
+    { text: 'Num servidor do jogo, <strong>60%</strong> dos jogadores escolheram a skin azul. Que fração dos jogadores é essa?', fraction: [3, 5],
+      hint: 'Escreva ' + F(60, 100) + ' e encolha: ÷ 10, depois ÷ 2.', explain: F(60, 100) + ' → ' + F(6, 10) + ' → ' + F(3, 5) + '. Ou seja, 3 de cada 5 jogadores.', grid: 60 },
+    { text: 'Missão 1 de novo: ' + F(9, 20) + ' = ?', input: true, answer: ['45'], suffix: '%',
+      hint: '20 × 5 = 100.', explain: '9 × 5 = 45 → 45%.', grid: 45 },
+    { text: 'Qual vale mais: ' + F(3, 5) + ' ou <strong>55%</strong>?', options: ['55%', '3/5', 'Iguais', 'Nenhum'], answer: 1,
+      hint: 'Transforme ' + F(3, 5) + ' em porcentagem e compare.', explain: F(3, 5) + ' = 60%, e 60% é mais que 55%.', grid: 60 },
+    { text: 'Último golpe! <strong>45%</strong> em fração, na forma mais simples:', fraction: [9, 20],
+      hint: F(45, 100) + ': 45 termina em 5, então os dois dividem por 5.', explain: F(45, 100) + ' ÷ 5 → ' + F(9, 20) + '. Chefão derrotado! 🏆', grid: 45 },
+  ], { id: '0002', title: '👾 Chefão' });
+</script>
+</body>
+</html>

@@ -57,3 +57,13 @@
 .forja .pick button.sel { background: var(--brand); color: #fff; border-color: var(--brand); }
 .forja .mults { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
 .forja .msg { text-align: center; font-weight: 700; min-height: 1.6em; }
+
+/* Entrada de fração: duas caixas empilhadas com o traço no meio */
+.quiz .frac-input { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; }
+.quiz .frac-input input { width: 4.2em; }
+.quiz .frac-input input:first-child { border-bottom: 4px solid var(--ink); }
+
+/* ---------- Encolhedor ---------- */
+.encolhedor .divs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
+.encolhedor .msg { text-align: center; font-weight: 700; min-height: 1.6em; }
+.encolhedor .trail { text-align: center; color: var(--muted); font-weight: 700; min-height: 1.4em; }
