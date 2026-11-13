@@ -20,12 +20,25 @@
     mount(root, questions, cfg) {
       cfg = cfg || {};
       const xpEach = cfg.xp || 10;
-      let i = 0, firstTry = 0, missed = [];
+      const id = cfg.id || 'x';
+      const P = window.Progress;
+      let i = 0, firstTry = 0, missed = [], triedNow = false, resumed = false;
       root.classList.add('quiz');
+
+      // Retoma um quiz deixado pela metade (aba recarregada, celular bloqueado…).
+      const saved = P && P.loadState(id);
+      if (saved && saved.n === questions.length && saved.i > 0 && saved.i < questions.length) {
+        i = saved.i; firstTry = saved.firstTry; missed = saved.missed || []; triedNow = !!saved.tried; resumed = true;
+      } else if (saved && saved.tried && saved.i === 0) {
+        missed = saved.missed || []; triedNow = true; resumed = true;
+      }
+      // Salva o andamento: assim um erro não "some" se a página recarregar.
+      const persist = (tried) => P && P.saveState(id, { i, firstTry, missed, tried, n: questions.length });
 
       function show() {
         const q = questions[i];
-        let tried = false, done = false;
+        let tried = triedNow, done = false;
+        triedNow = false;
         const box = document.createElement('div');
         box.className = 'q';
         box.innerHTML =
@@ -35,6 +48,14 @@
           '<div class="feedback"></div>' +
           '<div class="vis"></div>';
         root.innerHTML = '';
+        if (resumed) {
+          resumed = false;
+          const note = document.createElement('p');
+          note.className = 'muted resume';
+          note.innerHTML = '↩ Continuando de onde você parou. <button class="link">Recomeçar do zero</button>';
+          note.querySelector('button').onclick = () => { i = 0; firstTry = 0; missed = []; P && P.clearState(id); show(); };
+          root.appendChild(note);
+        }
         root.appendChild(box);
         const body = box.querySelector('.body');
         const fb = box.querySelector('.feedback');
@@ -43,6 +64,8 @@
           if (ok) {
             done = true;
             if (!tried) { firstTry++; window.XP && XP.add(xpEach); }
+            // Pergunta resolvida: se sair agora, volta já na próxima.
+            i++; persist(false); i--;
             fb.className = 'feedback show ok';
             fb.innerHTML = '<strong>' + (tried ? '✔ Isso! Agora foi.' : '✔ Acertou de primeira!') + '</strong> ' + (q.explain || '');
             if (typeof q.grid === 'number' && window.Grid100) Grid100.render(box.querySelector('.vis'), q.grid);
@@ -56,6 +79,7 @@
             // Guarda a 1ª resposta errada de cada pergunta: mostra ao adulto onde ela tropeçou.
             if (!tried) missed.push((i + 1) + ' (respondeu ' + plain(given) + ')');
             tried = true;
+            persist(true);
             fb.className = 'feedback show no';
             fb.innerHTML = '<strong>Quase!</strong> ' + (hint || q.hint || 'Tente de novo — pense em quanto falta para chegar em 100.');
           }
@@ -120,16 +144,19 @@
         const n = questions.length;
         const ratio = firstTry / n;
         const stars = ratio >= 0.9 ? 3 : ratio >= 0.6 ? 2 : 1;
-        try { localStorage.setItem('vicky-lesson-' + (cfg.id || 'x'), JSON.stringify({ firstTry, n, missed, when: new Date().toISOString() })); } catch (e) {}
+        if (P) { P.saveResult(id, firstTry, n, missed); P.clearState(id); }
+        const rec = P ? P.result(id) : null;
+        const bestLine = rec && rec.attempts > 1
+          ? '<p class="muted">Seu recorde: ' + rec.best.firstTry + ' / ' + rec.best.n + ' · tentativa nº ' + rec.attempts + '</p>' : '';
         const boss = /chef/i.test(cfg.title || '');
         const msg = stars === 3 ? (boss ? 'Chefão derrotado sem levar dano!' : 'Mandou muito bem!') : stars === 2 ? 'Vitória! Mais uma rodada e você zera.' : 'Você chegou ao fim — jogue de novo para pegar mais estrelas.';
         root.innerHTML =
           '<div class="q result"><div class="stars">' + '★'.repeat(stars) + '☆'.repeat(3 - stars) + '</div>' +
-          '<p class="big">' + firstTry + ' / ' + n + ' de primeira</p><p>' + msg + '</p>' +
+          '<p class="big">' + firstTry + ' / ' + n + ' de primeira</p><p>' + msg + '</p>' + bestLine +
           (missed.length ? '<p class="muted">Errou de primeira: nº ' + missed.join('; nº ') + '</p>' : '') +
           '<p class="muted">Mostre esta tela para um adulto 😉</p>' +
           '<button class="primary">Jogar de novo</button></div>';
-        root.querySelector('button').onclick = () => { i = 0; firstTry = 0; missed = []; show(); };
+        root.querySelector('.result button').onclick = () => { i = 0; firstTry = 0; missed = []; show(); };
         if (cfg.onFinish) cfg.onFinish(firstTry, n);
       }
 

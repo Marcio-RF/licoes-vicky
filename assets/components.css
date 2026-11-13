@@ -77,3 +77,7 @@
 .barra10 .b10-block.on { background: var(--gold); color: var(--ink); }
 .barra10 .b10-sum { font-size: 1.05rem; min-height: 1.6em; }
 .barra10 .b10-msg { font-weight: 700; min-height: 1.6em; }
+
+/* Aviso de quiz retomado */
+.quiz .resume { text-align: center; }
+.quiz .resume button.link { min-height: 0; padding: 2px 6px; border: none; background: none; color: var(--brand); text-decoration: underline; font-size: inherit; }

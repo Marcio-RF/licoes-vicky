@@ -9,9 +9,9 @@
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Missões %">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/components.css">
-<script src="assets/xp.js"></script>
+<link rel="stylesheet" href="assets/style.css?v=2">
+<link rel="stylesheet" href="assets/components.css?v=2">
+<script src="assets/xp.js?v=2"></script>
 <style>
   .map { list-style: none; padding: 0; margin: 0; }
   .map li { margin: 14px 0; }
@@ -29,6 +29,8 @@
   .map .t strong { display: block; }
   .map .t small { color: var(--muted); }
   .map .stars { color: var(--gold); font-size: 1.3rem; letter-spacing: .05em; white-space: nowrap; }
+  .map .score { display: flex; flex-direction: column; align-items: flex-end; }
+  .map .rec { color: var(--muted); font-weight: 700; white-space: nowrap; }
   .countdown { text-align: center; font-weight: 800; }
 </style>
 </head>
@@ -70,19 +72,30 @@
     days > 1 ? '⏳ Faltam ' + days + ' dias para a prova' : days === 1 ? '⏳ A prova é amanhã: você consegue!' : '🏆 Boa prova!';
 
   const map = document.getElementById('map');
-  MISSIONS.forEach((m, i) => {
-    let stars = '';
-    try {
-      const r = JSON.parse(localStorage.getItem('vicky-lesson-' + m.id) || 'null');
-      if (r) { const s = r.firstTry / r.n >= 0.9 ? 3 : r.firstTry / r.n >= 0.6 ? 2 : 1; stars = '★'.repeat(s) + '☆'.repeat(3 - s); }
-    } catch (e) {}
-    const inner = '<span class="n">' + (m.href ? i + 1 : '🔒') + '</span>' +
-      '<span class="t"><strong>Missão ' + (i + 1) + ': ' + m.title + '</strong><small>' + (m.href ? m.desc : 'Em breve') + '</small></span>' +
-      '<span class="stars">' + stars + '</span>';
-    const li = document.createElement('li');
-    li.innerHTML = m.href ? '<a href="' + m.href + '">' + inner + '</a>' : '<div class="locked">' + inner + '</div>';
-    map.appendChild(li);
-  });
+  function renderMap() {
+    map.innerHTML = '';
+    MISSIONS.forEach((m, i) => {
+      const r = Progress.result(m.id);
+      const inQuiz = Progress.loadState(m.id);
+      let right = '';
+      if (r) {
+        const s = Progress.stars(r.best);
+        right = '<span class="stars">' + '★'.repeat(s) + '☆'.repeat(3 - s) + '</span>' +
+          '<small class="rec">recorde ' + r.best.firstTry + '/' + r.best.n + '</small>';
+      } else if (inQuiz && inQuiz.i > 0) {
+        right = '<small class="rec">⏸ parou na ' + (inQuiz.i + 1) + 'ª</small>';
+      }
+      const inner = '<span class="n">' + (m.href ? i + 1 : '🔒') + '</span>' +
+        '<span class="t"><strong>Missão ' + (i + 1) + ': ' + m.title + '</strong><small>' + (m.href ? m.desc : 'Em breve') + '</small></span>' +
+        '<span class="score">' + right + '</span>';
+      const li = document.createElement('li');
+      li.innerHTML = m.href ? '<a href="' + m.href + '">' + inner + '</a>' : '<div class="locked">' + inner + '</div>';
+      map.appendChild(li);
+    });
+  }
+  renderMap();
+  // Ao voltar de uma missão pelo botão "voltar", redesenha com o placar novo.
+  window.addEventListener('pageshow', renderMap);
 </script>
 </body>
 </html>
