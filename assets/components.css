@@ -67,3 +67,13 @@
 .encolhedor .divs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 8px; }
 .encolhedor .msg { text-align: center; font-weight: 700; min-height: 1.6em; }
 .encolhedor .trail { text-align: center; color: var(--muted); font-weight: 700; min-height: 1.4em; }
+
+/* ---------- Baú de 10 blocos (barra10.js) ---------- */
+.barra10 { text-align: center; }
+.barra10 .b10-goal { font-size: 1.15rem; }
+.barra10 .b10-info { color: var(--muted); margin-top: 0; }
+.barra10 .b10-bar { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; padding: 6px; background: var(--ink); border-radius: 12px; margin: 10px 0; }
+.barra10 .b10-block { min-height: 64px; padding: 0; border-radius: 8px; border: none; background: #3a3755; color: #cfcbe6; font-size: .8rem; font-weight: 800; }
+.barra10 .b10-block.on { background: var(--gold); color: var(--ink); }
+.barra10 .b10-sum { font-size: 1.05rem; min-height: 1.6em; }
+.barra10 .b10-msg { font-weight: 700; min-height: 1.6em; }

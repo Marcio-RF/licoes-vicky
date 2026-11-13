@@ -9,11 +9,18 @@
     return String(s).trim().toLowerCase().replace(/\s+/g, '').replace(/%$/, '').replace(',', '.');
   }
 
+  // Converte o HTML de uma resposta em texto simples ("3/5" em vez da fração empilhada).
+  function plain(html) {
+    return String(html)
+      .replace(/<span class="frac"><span>(.*?)<\/span><span>(.*?)<\/span><\/span>/g, '$1/$2')
+      .replace(/<[^>]+>/g, '');
+  }
+
   window.Quiz = {
     mount(root, questions, cfg) {
       cfg = cfg || {};
       const xpEach = cfg.xp || 10;
-      let i = 0, firstTry = 0;
+      let i = 0, firstTry = 0, missed = [];
       root.classList.add('quiz');
 
       function show() {
@@ -32,7 +39,7 @@
         const body = box.querySelector('.body');
         const fb = box.querySelector('.feedback');
 
-        function finish(ok, hint) {
+        function finish(ok, hint, given) {
           if (ok) {
             done = true;
             if (!tried) { firstTry++; window.XP && XP.add(xpEach); }
@@ -46,6 +53,8 @@
             box.appendChild(nx);
             nx.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           } else {
+            // Guarda a 1ª resposta errada de cada pergunta: mostra ao adulto onde ela tropeçou.
+            if (!tried) missed.push((i + 1) + ' (respondeu ' + plain(given) + ')');
             tried = true;
             fb.className = 'feedback show no';
             fb.innerHTML = '<strong>Quase!</strong> ' + (hint || q.hint || 'Tente de novo — pense em quanto falta para chegar em 100.');
@@ -66,8 +75,8 @@
           const check = () => {
             const a = parseInt(top.value, 10), b = parseInt(bot.value, 10);
             if (done || !a || !b) return;
-            if (a * td !== b * tn) return finish(false);
-            if (gcd(a, b) !== 1) return finish(false, 'O valor está certo, mas <strong>' + a + '/' + b + '</strong> ainda dá para encolher! Divida em cima e embaixo pelo mesmo número.');
+            if (a * td !== b * tn) return finish(false, null, a + '/' + b);
+            if (gcd(a, b) !== 1) return finish(false, 'O valor está certo, mas <strong>' + a + '/' + b + '</strong> ainda dá para encolher! Divida em cima e embaixo pelo mesmo número.', a + '/' + b);
             top.disabled = bot.disabled = btn.disabled = true;
             finish(true);
           };
@@ -84,7 +93,7 @@
             if (done || !inp.value.trim()) return;
             const ok = answers.includes(norm(inp.value));
             if (ok) { inp.disabled = true; btn.disabled = true; }
-            finish(ok);
+            finish(ok, null, inp.value.trim() + (q.suffix || ''));
           };
           btn.onclick = check;
           inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); });
@@ -99,7 +108,7 @@
               const ok = k === q.answer;
               b.classList.add(ok ? 'right' : 'wrong');
               if (ok) opts.querySelectorAll('button').forEach((x) => (x.disabled = x !== b));
-              finish(ok);
+              finish(ok, null, o);
             };
             opts.appendChild(b);
           });
@@ -111,15 +120,16 @@
         const n = questions.length;
         const ratio = firstTry / n;
         const stars = ratio >= 0.9 ? 3 : ratio >= 0.6 ? 2 : 1;
-        try { localStorage.setItem('vicky-lesson-' + (cfg.id || 'x'), JSON.stringify({ firstTry, n, when: new Date().toISOString() })); } catch (e) {}
+        try { localStorage.setItem('vicky-lesson-' + (cfg.id || 'x'), JSON.stringify({ firstTry, n, missed, when: new Date().toISOString() })); } catch (e) {}
         const boss = /chef/i.test(cfg.title || '');
         const msg = stars === 3 ? (boss ? 'Chefão derrotado sem levar dano!' : 'Mandou muito bem!') : stars === 2 ? 'Vitória! Mais uma rodada e você zera.' : 'Você chegou ao fim — jogue de novo para pegar mais estrelas.';
         root.innerHTML =
           '<div class="q result"><div class="stars">' + '★'.repeat(stars) + '☆'.repeat(3 - stars) + '</div>' +
           '<p class="big">' + firstTry + ' / ' + n + ' de primeira</p><p>' + msg + '</p>' +
+          (missed.length ? '<p class="muted">Errou de primeira: nº ' + missed.join('; nº ') + '</p>' : '') +
           '<p class="muted">Mostre esta tela para um adulto 😉</p>' +
           '<button class="primary">Jogar de novo</button></div>';
-        root.querySelector('button').onclick = () => { i = 0; firstTry = 0; show(); };
+        root.querySelector('button').onclick = () => { i = 0; firstTry = 0; missed = []; show(); };
         if (cfg.onFinish) cfg.onFinish(firstTry, n);
       }
 

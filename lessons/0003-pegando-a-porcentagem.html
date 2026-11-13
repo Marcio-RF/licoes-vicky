@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 3 · Pegando a porcentagem</title>
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/components.css">
+<script src="../assets/xp.js"></script>
+<script src="../assets/visuals.js"></script>
+<script src="../assets/quiz.js"></script>
+<script src="../assets/barra10.js"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Missão 3 de 5</span>
+  <h1>Pegando a porcentagem</h1>
+  <p class="subtitle">Quanto é 25% de 80 moedas? Sem regra de três: só com atalhos de cabeça. ⏱ 12 minutos.</p>
+
+  <h2>🔁 Retomada: o caminho de volta</h2>
+  <p>A Missão 2 foi a mais difícil até agora, então ela volta primeiro. Responda sem olhar e lembre: <strong>só vale a forma mais simples</strong>. Encolheu? Veja se ainda dá para encolher de novo!</p>
+  <div id="warmup"></div>
+
+  <h2>💰 O bloco de 10%</h2>
+  <p>Imagine o seu tesouro dividido em <strong>10 blocos iguais</strong>. Cada bloco é <span class="frac"><span>1</span><span>10</span></span> do tesouro, ou seja, <strong>10%</strong>.</p>
+  <div class="card key">
+    <h3>🔑 10% = dividir por 10</h3>
+    <div class="eq"><span>10% de 350</span><span class="op">=</span><span>350 ÷ 10</span><span class="op">=</span><span class="hl">35</span></div>
+    <p>Com o bloco de 10% na mão, dá para montar outras porcentagens: <strong>30% são 3 blocos</strong> (3 × 35 = 105), <strong>70% são 7 blocos</strong>, e assim por diante. É calcular a porcentagem pela ideia de proporção, sem regra de três, do jeito que o 6º ano pede.<sup class="cite"><a href="#fontes">[1]</a></sup></p>
+  </div>
+
+  <div class="card">
+    <h3>🧰 O baú de 10 blocos</h3>
+    <p>Toque nos blocos para pegar exatamente a porcentagem pedida. Cada baú aberto vale +5 XP.</p>
+    <div id="bau"></div>
+  </div>
+
+  <h2>⚡ Atalhos: as frações famosas voltam!</h2>
+  <p>Lembra das frações famosas da Missão 1? Elas viram <strong>atalhos</strong>, porque pegar uma porcentagem de algo é o mesmo que pegar uma fração daquilo.<sup class="cite"><a href="#fontes">[2]</a></sup></p>
+  <div class="card tip">
+    <table style="width:100%; border-collapse:collapse; text-align:center">
+      <tr><td><strong>50%</strong></td><td>= <span class="frac"><span>1</span><span>2</span></span></td><td>➜ <strong>metade</strong> (÷ 2)</td></tr>
+      <tr><td><strong>25%</strong></td><td>= <span class="frac"><span>1</span><span>4</span></span></td><td>➜ <strong>metade da metade</strong> (÷ 4)</td></tr>
+      <tr><td><strong>75%</strong></td><td>= <span class="frac"><span>3</span><span>4</span></span></td><td>➜ <strong>50% + 25%</strong></td></tr>
+      <tr><td><strong>20%</strong></td><td>= <span class="frac"><span>1</span><span>5</span></span></td><td>➜ <strong>÷ 5</strong> (ou 2 blocos de 10%)</td></tr>
+      <tr><td><strong>5%</strong></td><td></td><td>➜ <strong>metade de 10%</strong></td></tr>
+      <tr><td><strong>1%</strong></td><td>= <span class="frac"><span>1</span><span>100</span></span></td><td>➜ <strong>÷ 100</strong></td></tr>
+    </table>
+  </div>
+  <p>Exemplo: <strong>25% de 80</strong>. A metade de 80 é 40, e a metade de 40 é <strong>20</strong>. Pronto!</p>
+  <p>Mais um: <strong>75% de 120</strong>. 50% é 60, 25% é 30, e 60 + 30 = <strong>90</strong>.</p>
+
+  <h2>👾 O chefão</h2>
+  <p>10 desafios. Use o atalho que achar mais fácil. Pode usar papel para fazer a conta!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Amanhã, diga em voz alta: <strong>quanto é 10% de 90? E 50% de 90? E 25% de 40?</strong> Depois, de surpresa: <strong>60% em fração, na forma mais simples?</strong></p>
+  </div>
+
+  <div class="card ask">
+    <h3>🙋 Ficou alguma dúvida?</h3>
+    <p>Peça para um adulto abrir o Claude e pergunte o que quiser. Ele é o seu professor nessas missões, e nenhuma pergunta é boba.</p>
+  </div>
+
+  <div class="card source" id="fontes">
+    <h3>📺 Para ver mais</h3>
+    <p><strong>Recomendado:</strong> <a href="https://pt.khanacademy.org/">Khan Academy em português</a>. Busque por <em>“porcentagem de um número”</em>.</p>
+    <ol>
+      <li><a href="https://profez.com.br/bncc/matematica/6-ano/ef06ma13">BNCC EF06MA13: porcentagens pela ideia de proporcionalidade, sem regra de três</a></li>
+      <li><a href="https://novaescola.org.br/planos-de-aula/fundamental/6ano/matematica/calculando-porcentagem/1293">Nova Escola: “Calculando porcentagens” (6º ano)</a></li>
+    </ol>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0002-o-caminho-de-volta.html">← Missão 2</a>
+    <a href="../reference/fracoes-e-porcentagem.html">📄 Folha de consulta</a>
+  </nav>
+
+  <footer>Lição 0003 · Frações e porcentagem · feita para a Vicky</footer>
+</main>
+
+<script>
+  const F = (a, b) => '<span class="frac"><span>' + a + '</span><span>' + b + '</span></span>';
+
+  XP.mount(document.getElementById('xp'));
+
+  Quiz.mount(document.getElementById('warmup'), [
+    { text: '<strong>25%</strong> em fração, na forma mais simples:', fraction: [1, 4],
+      hint: 'Comece com ' + F(25, 100) + '. Os dois terminam em 5 ou 0…', explain: F(25, 100) + ' ÷ 25 → ' + F(1, 4) + '.', grid: 25 },
+    { text: '<strong>40%</strong> em fração, na forma mais simples:', fraction: [2, 5],
+      hint: F(40, 100) + ' ÷ 10 → ' + F(4, 10) + '. E agora, os dois são pares?', explain: F(40, 100) + ' → ' + F(4, 10) + ' → ' + F(2, 5) + '.', grid: 40 },
+    { text: '<strong>70%</strong> em fração, na forma mais simples:', fraction: [7, 10],
+      hint: F(70, 100) + ': os dois terminam em 0.', explain: F(70, 100) + ' ÷ 10 → ' + F(7, 10) + '. 7 e 10 não têm mais divisor em comum.', grid: 70 },
+    { text: '<strong>90%</strong> em fração, na forma mais simples:', fraction: [9, 10],
+      hint: F(90, 100) + ': os dois terminam em 0.', explain: F(90, 100) + ' ÷ 10 → ' + F(9, 10) + '.', grid: 90 },
+  ], { id: '0003-retomada', title: '🔁 Retomada', xp: 5 });
+
+  Barra10.mount(document.getElementById('bau'), [
+    { total: 80, pct: 10 },
+    { total: 250, pct: 30 },
+    { total: 60, pct: 50 },
+    { total: 120, pct: 70, item: 'gemas' },
+    { total: 40, pct: 90, item: 'flechas' },
+  ]);
+
+  Quiz.mount(document.getElementById('boss'), [
+    { text: 'Quanto é <strong>50% de 60</strong> moedas?', input: true, answer: ['30'],
+      hint: '50% é a metade.', explain: 'Metade de 60 = 30.' },
+    { text: 'Quanto é <strong>10% de 350</strong>?', input: true, answer: ['35'],
+      hint: '10% = dividir por 10.', explain: '350 ÷ 10 = 35.' },
+    { text: 'Quanto é <strong>25% de 80</strong>?', options: ['25', '40', '20', '32'], answer: 2,
+      hint: '25% = metade da metade.', explain: 'Metade de 80 = 40; metade de 40 = 20.' },
+    { text: 'Missão 2: <strong>80%</strong> em fração, na forma mais simples:', fraction: [4, 5],
+      hint: F(80, 100) + ' ÷ 10 → ' + F(8, 10) + '. Ainda dá para encolher?', explain: F(80, 100) + ' → ' + F(8, 10) + ' → ' + F(4, 5) + '.', grid: 80 },
+    { text: 'Quanto é <strong>30% de 200</strong>?', input: true, answer: ['60'],
+      hint: '10% de 200 é 20. Quantos blocos de 10% formam 30%?', explain: '10% = 20, então 30% = 3 × 20 = 60.' },
+    { text: 'Uma espada custa <strong>120 moedas</strong>. Você já juntou <strong>75%</strong> do preço. Quantas moedas você tem?', options: ['80', '90', '75', '95'], answer: 1,
+      hint: '75% = 50% + 25%.', explain: '50% de 120 = 60; 25% = 30; 60 + 30 = 90 moedas.' },
+    { text: 'Quanto é <strong>5% de 40</strong>?', input: true, answer: ['2'],
+      hint: 'Primeiro ache 10% de 40. Depois pegue a metade.', explain: '10% de 40 = 4; metade de 4 = 2.' },
+    { text: 'Missão 2: <strong>35%</strong> em fração, na forma mais simples:', fraction: [7, 20],
+      hint: F(35, 100) + ': 35 termina em 5, então os dois dividem por 5.', explain: F(35, 100) + ' ÷ 5 → ' + F(7, 20) + '.', grid: 35 },
+    { text: 'Quanto é <strong>1% de 700</strong>?', input: true, answer: ['7'],
+      hint: '1% = dividir por 100.', explain: '700 ÷ 100 = 7.' },
+    { text: 'Último golpe! Um torneio tem <strong>40 jogadores</strong> e <strong>20%</strong> foram eliminados na 1ª rodada. Quantos foram eliminados?', options: ['20', '10', '4', '8'], answer: 3,
+      hint: '20% = 2 blocos de 10%. Ou: 20% = ' + F(1, 5) + ', então divida por 5.', explain: '10% de 40 = 4; 20% = 2 × 4 = 8 jogadores. Chefão derrotado! 🏆' },
+  ], { id: '0003', title: '👾 Chefão' });
+</script>
+</body>
+</html>
