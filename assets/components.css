@@ -81,3 +81,24 @@
 /* Aviso de quiz retomado */
 .quiz .resume { text-align: center; }
 .quiz .resume button.link { min-height: 0; padding: 2px 6px; border: none; background: none; color: var(--brand); text-decoration: underline; font-size: inherit; }
+
+/* ---------- Loja de skins (loja.js) ---------- */
+.loja-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.loja-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 12px 8px; min-height: 120px; }
+.loja-item.sel { border-color: var(--brand); background: var(--brand-soft); }
+.loja-item.sold { opacity: .7; }
+.loja-emoji { font-size: 2rem; line-height: 1.1; }
+.loja-name { font-size: .95rem; }
+.loja-price { color: var(--muted); font-size: .9rem; }
+.loja-tag { position: absolute; top: 6px; right: 6px; font-size: .75rem; font-weight: 900; padding: 2px 6px; border-radius: 8px; color: #fff; }
+.loja-tag.desconto { background: var(--hp); }
+.loja-tag.aumento { background: var(--bad); }
+.loja-ok { position: absolute; top: 6px; left: 8px; color: var(--hp); font-weight: 900; }
+.loja-stage { margin-top: 14px; }
+.loja-title { font-size: 1.1rem; }
+.loja-bar { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; padding: 5px; background: var(--ink); border-radius: 10px; }
+.loja-bar i { display: grid; place-items: center; min-height: 44px; border-radius: 6px; background: var(--gold); color: var(--ink); font-style: normal; font-weight: 800; font-size: .72rem; transition: all .3s; }
+.loja-bar i.cut { background: #3a3755; color: #8d89a8; text-decoration: line-through; }
+.loja-bar i.extra { background: var(--bad); color: #fff; }
+.loja-cap { text-align: center; color: var(--muted); margin-top: 4px; }
+.loja-msg { font-weight: 700; min-height: 1.4em; }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 4 · A loja de skins</title>
+<link rel="icon" href="../assets/icon.svg?v=3" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<link rel="stylesheet" href="../assets/components.css?v=3">
+<script src="../assets/xp.js?v=3"></script>
+<script src="../assets/visuals.js?v=3"></script>
+<script src="../assets/quiz.js?v=3"></script>
+<script src="../assets/loja.js?v=3"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Missão 4 de 5</span>
+  <h1>A loja de skins</h1>
+  <p class="subtitle">Descontos e aumentos: quanto você paga de verdade? ⏱ 12 minutos.</p>
+
+  <h2>🔁 Retomada</h2>
+  <p>Um pouco de cada missão, sem olhar a folha de consulta.</p>
+  <div id="warmup"></div>
+
+  <h2>🏷 Desconto: o preço diminui</h2>
+  <p>A skin de dragão custa <strong>60 moedas</strong> e está com <strong>30% de desconto</strong>. Quanto você paga? São dois passos:</p>
+  <div class="card key">
+    <h3>🔑 Desconto = tirar a porcentagem do preço</h3>
+    <ol>
+      <li><strong>Ache a porcentagem</strong> (como na Missão 3): 10% de 60 = 6, então 30% = 3 × 6 = <strong>18</strong>.</li>
+      <li><strong>Tire do preço</strong>: 60 − 18 = <strong>42 moedas</strong>.</li>
+    </ol>
+    <div class="eq"><span>60</span><span class="op">−</span><span>18</span><span class="op">=</span><span class="hl">42</span></div>
+  </div>
+  <div class="card tip">
+    <h3>⚡ Atalho: o que sobra</h3>
+    <p>O preço todo é <strong>100%</strong>. Com 30% de desconto, você paga o que sobra: <strong>100% − 30% = 70%</strong>. E 70% de 60 = 7 × 6 = <strong>42</strong>. Mesmo resultado, um passo só!</p>
+  </div>
+
+  <h2>📈 Aumento: o preço cresce</h2>
+  <p>Depois da atualização do jogo, a mochila de <strong>40 moedas</strong> ficou <strong>20% mais cara</strong>. Mesma ideia, mas agora você <strong>soma</strong>:</p>
+  <div class="eq"><span>20% de 40 = 8</span><span class="op">→</span><span>40 + 8</span><span class="op">=</span><span class="hl">48</span></div>
+  <p>É assim que a escola trabalha porcentagem no 6º ano: descontos e acréscimos em compras do dia a dia.<sup class="cite"><a href="#fontes">[1]</a></sup></p>
+
+  <div class="card tip">
+    <h3>🧐 Confira se faz sentido</h3>
+    <p>Com <strong>desconto</strong>, o preço final tem que ser <strong>menor</strong> que o preço original. Com <strong>aumento</strong>, tem que ser <strong>maior</strong>. Se não for, algo deu errado!</p>
+  </div>
+
+  <div class="card">
+    <h3>🛒 A loja</h3>
+    <p>Escolha um item, calcule a porcentagem e depois o preço final. Cada compra certa vale +5 XP.</p>
+    <div id="loja"></div>
+  </div>
+
+  <h2>👾 O chefão</h2>
+  <p>10 desafios de compra. Pode usar papel para as contas!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Na próxima vez que vir uma promoção (no mercado, num app, num jogo), calcule de cabeça quanto fica o preço. Porcentagem está em todo lugar!</p>
+  </div>
+
+  <div class="card ask">
+    <h3>🙋 Ficou alguma dúvida?</h3>
+    <p>Peça para um adulto abrir o Claude e pergunte o que quiser. Ele é o seu professor nessas missões, e nenhuma pergunta é boba.</p>
+  </div>
+
+  <div class="card source" id="fontes">
+    <h3>📺 Para ver mais</h3>
+    <p><strong>Recomendado:</strong> <a href="https://pt.khanacademy.org/">Khan Academy em português</a>. Busque por <em>“desconto porcentagem”</em>.</p>
+    <ol>
+      <li><a href="https://novaescola.org.br/planos-de-aula/fundamental/6ano/matematica/descontos-acrescimos-e-porcentagem/6472">Nova Escola: “Descontos, acréscimos e porcentagem” (6º ano)</a></li>
+    </ol>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0003-pegando-a-porcentagem.html">← Missão 3</a>
+    <a href="../reference/fracoes-e-porcentagem.html">📄 Folha de consulta</a>
+    <a href="0005-o-chefao-final.html">Missão 5 →</a>
+  </nav>
+
+  <footer>Lição 0004 · Frações e porcentagem · feita para a Vicky</footer>
+</main>
+
+<script>
+  const F = (a, b) => '<span class="frac"><span>' + a + '</span><span>' + b + '</span></span>';
+
+  XP.mount(document.getElementById('xp'));
+
+  Quiz.mount(document.getElementById('warmup'), [
+    { tag: '% de', text: 'Quanto é <strong>25% de 40</strong>?', input: true, answer: ['10'],
+      hint: '25% = metade da metade.', explain: 'Metade de 40 = 20; metade de 20 = 10.' },
+    { tag: 'fração → %', text: F(3, 4) + ' = ?', input: true, answer: ['75'], suffix: '%',
+      hint: '4 × 25 = 100.', explain: '3 × 25 = 75 → 75%.', grid: 75 },
+    { tag: '% → fração', text: '<strong>40%</strong> em fração, na forma mais simples:', fraction: [2, 5],
+      hint: F(40, 100) + ' ÷ 10 → ' + F(4, 10) + '. Ainda dá para encolher?', explain: F(40, 100) + ' → ' + F(4, 10) + ' → ' + F(2, 5) + '.', grid: 40 },
+    { tag: '% de', text: 'Quanto é <strong>10% de 90</strong>?', input: true, answer: ['9'],
+      hint: '10% = dividir por 10.', explain: '90 ÷ 10 = 9.' },
+  ], { id: '0004-retomada', title: '🔁 Retomada', xp: 5 });
+
+  Loja.mount(document.getElementById('loja'), [
+    { name: 'Espada lendária', emoji: '🗡', price: 60, pct: 30, mode: 'desconto' },
+    { name: 'Escudo', emoji: '🛡', price: 80, pct: 50, mode: 'desconto' },
+    { name: 'Skin de dragão', emoji: '🐉', price: 200, pct: 10, mode: 'desconto' },
+    { name: 'Coroa', emoji: '👑', price: 120, pct: 20, mode: 'desconto' },
+    { name: 'Mochila', emoji: '🎒', price: 40, pct: 20, mode: 'aumento' },
+    { name: 'Arco élfico', emoji: '🏹', price: 150, pct: 10, mode: 'aumento' },
+  ]);
+
+  Quiz.mount(document.getElementById('boss'), [
+    { tag: 'desconto', text: 'Uma skin de <strong>80 moedas</strong> está com <strong>25% de desconto</strong>. Qual o preço final?', input: true, answer: ['60'],
+      hint: '25% de 80 = metade da metade = 20. Agora tire do preço.', explain: '25% de 80 = 20; 80 − 20 = 60 moedas.' },
+    { tag: 'aumento', text: 'Uma mochila de <strong>50 moedas</strong> ficou <strong>10% mais cara</strong>. Qual o novo preço?', input: true, answer: ['55'],
+      hint: '10% de 50 = 5. Aumento: some.', explain: '10% de 50 = 5; 50 + 5 = 55 moedas.' },
+    { tag: 'desconto', text: 'Um item de <strong>200 moedas</strong> tem <strong>30% de desconto</strong>. Quantas moedas você <strong>economiza</strong>?', options: ['140', '60', '170', '30'], answer: 1,
+      hint: 'Economizar = o valor do desconto, não o preço final.', explain: '10% de 200 = 20; 30% = 60. Você economiza 60 (e paga 140).' },
+    { tag: 'desconto', text: 'Com <strong>20% de desconto</strong>, você paga quantos % do preço?', options: ['120%', '20%', '80%', '100%'], answer: 2,
+      hint: 'O preço todo é 100%. Quanto sobra tirando 20%?', explain: '100% − 20% = 80%. Você paga 80% do preço.' },
+    { tag: '% → fração', text: 'Revisão: <strong>15%</strong> em fração, na forma mais simples:', fraction: [3, 20],
+      hint: F(15, 100) + ': 15 termina em 5, então os dois dividem por 5.', explain: F(15, 100) + ' ÷ 5 → ' + F(3, 20) + '.', grid: 15 },
+    { tag: 'desconto', text: 'Um arco de <strong>90 moedas</strong> está com <strong>10% de desconto</strong>. Qual o preço final?', input: true, answer: ['81'],
+      hint: '10% de 90 = 9.', explain: '90 − 9 = 81 moedas. (Ou: 90% de 90 = 9 × 9 = 81.)' },
+    { tag: 'desconto', text: 'Uma skin custava <strong>50</strong> e agora custa <strong>40</strong>. Qual foi o desconto em %?', options: ['10%', '40%', '25%', '20%'], answer: 3,
+      hint: 'Ela baixou 10 moedas. Que fração de 50 é 10? Depois leve até 100 (Missão 1!).', explain: 'Baixou 10 de 50: ' + F(10, 50) + ' = ' + F(20, 100) + ' = 20%.' },
+    { tag: 'aumento', text: 'Uma armadura de <strong>200 moedas</strong> subiu <strong>5%</strong>. Qual o novo preço?', input: true, answer: ['210'],
+      hint: '5% = metade de 10%. 10% de 200 = 20.', explain: '5% de 200 = 10; 200 + 10 = 210 moedas.' },
+    { tag: '% → fração', text: 'Revisão: <strong>60%</strong> em fração, na forma mais simples:', fraction: [3, 5],
+      hint: F(60, 100) + ' ÷ 10 → ' + F(6, 10) + '. Os dois são pares…', explain: F(60, 100) + ' → ' + F(6, 10) + ' → ' + F(3, 5) + '.', grid: 60 },
+    { tag: 'comparar', text: 'Último golpe! Loja A: espada de <strong>100</strong> com <strong>30% off</strong>. Loja B: a mesma espada por <strong>80</strong> com <strong>10% off</strong>. Onde é mais barato?', options: ['Loja A', 'Loja B', 'Iguais', 'Nenhuma'], answer: 0,
+      hint: 'Calcule o preço final nas duas lojas.', explain: 'A: 100 − 30 = 70. B: 80 − 8 = 72. A Loja A é mais barata! 🏆' },
+  ], { id: '0004', title: '👾 Chefão' });
+</script>
+</body>
+</html>

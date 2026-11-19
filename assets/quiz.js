@@ -4,6 +4,8 @@
 // Pergunta de fração: { text, fraction:[2,5], explain }  -> duas caixas; só aceita a forma mais simples
 // Pergunta digitada:   { text, input:true, answer:['75'], suffix:'%', explain, grid:75 }
 //   - grid (opcional): número de quadradinhos para pintar na grade 10x10 depois do acerto.
+//   - tag (opcional): habilidade da pergunta (ex.: '% → fração'); aparece na lista de erros.
+// Opções extras: { shuffle:true } embaralha; { sample:12 } sorteia 12 perguntas do banco a cada rodada.
 (function () {
   function norm(s) {
     return String(s).trim().toLowerCase().replace(/\s+/g, '').replace(/%$/, '').replace(',', '.');
@@ -25,24 +27,36 @@
       let i = 0, firstTry = 0, missed = [], triedNow = false, resumed = false;
       root.classList.add('quiz');
 
+      // Ordem das perguntas desta rodada (índices do banco). Sorteia se shuffle/sample.
+      function pick() {
+        const idx = questions.map((_, k) => k);
+        if (cfg.shuffle || cfg.sample) {
+          for (let k = idx.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [idx[k], idx[j]] = [idx[j], idx[k]]; }
+        }
+        return cfg.sample ? idx.slice(0, cfg.sample) : idx;
+      }
+      let order = pick();
+
       // Retoma um quiz deixado pela metade (aba recarregada, celular bloqueado…).
-      const saved = P && P.loadState(id);
-      if (saved && saved.n === questions.length && saved.i > 0 && saved.i < questions.length) {
+      let saved = P && P.loadState(id);
+      if (saved && Array.isArray(saved.order) && saved.order.every((k) => k >= 0 && k < order.length)) order = saved.order;
+      else if (saved && (cfg.shuffle || cfg.sample)) saved = null;
+      if (saved && saved.n === order.length && saved.i > 0 && saved.i < order.length) {
         i = saved.i; firstTry = saved.firstTry; missed = saved.missed || []; triedNow = !!saved.tried; resumed = true;
       } else if (saved && saved.tried && saved.i === 0) {
         missed = saved.missed || []; triedNow = true; resumed = true;
       }
       // Salva o andamento: assim um erro não "some" se a página recarregar.
-      const persist = (tried) => P && P.saveState(id, { i, firstTry, missed, tried, n: questions.length });
+      const persist = (tried) => P && P.saveState(id, { i, firstTry, missed, tried, n: order.length, order });
 
       function show() {
-        const q = questions[i];
+        const q = questions[order[i]];
         let tried = triedNow, done = false;
         triedNow = false;
         const box = document.createElement('div');
         box.className = 'q';
         box.innerHTML =
-          '<div class="q-head"><span>' + (cfg.title || 'Desafio') + '</span><span>' + (i + 1) + ' / ' + questions.length + '</span></div>' +
+          '<div class="q-head"><span>' + (cfg.title || 'Desafio') + '</span><span>' + (i + 1) + ' / ' + order.length + '</span></div>' +
           '<div class="q-text">' + q.text + '</div>' +
           '<div class="body"></div>' +
           '<div class="feedback"></div>' +
@@ -53,7 +67,7 @@
           const note = document.createElement('p');
           note.className = 'muted resume';
           note.innerHTML = '↩ Continuando de onde você parou. <button class="link">Recomeçar do zero</button>';
-          note.querySelector('button').onclick = () => { i = 0; firstTry = 0; missed = []; P && P.clearState(id); show(); };
+          note.querySelector('button').onclick = () => { i = 0; firstTry = 0; missed = []; order = pick(); P && P.clearState(id); show(); };
           root.appendChild(note);
         }
         root.appendChild(box);
@@ -71,13 +85,13 @@
             if (typeof q.grid === 'number' && window.Grid100) Grid100.render(box.querySelector('.vis'), q.grid);
             const nx = document.createElement('button');
             nx.className = 'primary next';
-            nx.textContent = i + 1 < questions.length ? 'Próxima ➜' : 'Ver resultado ➜';
-            nx.onclick = () => { i++; i < questions.length ? show() : result(); };
+            nx.textContent = i + 1 < order.length ? 'Próxima ➜' : 'Ver resultado ➜';
+            nx.onclick = () => { i++; i < order.length ? show() : result(); };
             box.appendChild(nx);
             nx.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           } else {
             // Guarda a 1ª resposta errada de cada pergunta: mostra ao adulto onde ela tropeçou.
-            if (!tried) missed.push((i + 1) + ' (respondeu ' + plain(given) + ')');
+            if (!tried) missed.push((i + 1) + (q.tag ? ' [' + q.tag + ']' : '') + ' (respondeu ' + plain(given) + ')');
             tried = true;
             persist(true);
             fb.className = 'feedback show no';
@@ -141,7 +155,7 @@
       }
 
       function result() {
-        const n = questions.length;
+        const n = order.length;
         const ratio = firstTry / n;
         const stars = ratio >= 0.9 ? 3 : ratio >= 0.6 ? 2 : 1;
         if (P) { P.saveResult(id, firstTry, n, missed); P.clearState(id); }
@@ -156,7 +170,7 @@
           (missed.length ? '<p class="muted">Errou de primeira: nº ' + missed.join('; nº ') + '</p>' : '') +
           '<p class="muted">Mostre esta tela para um adulto 😉</p>' +
           '<button class="primary">Jogar de novo</button></div>';
-        root.querySelector('.result button').onclick = () => { i = 0; firstTry = 0; missed = []; show(); };
+        root.querySelector('.result button').onclick = () => { i = 0; firstTry = 0; missed = []; order = pick(); show(); };
         if (cfg.onFinish) cfg.onFinish(firstTry, n);
       }
 

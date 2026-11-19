@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 5 · O chefão final</title>
+<link rel="icon" href="../assets/icon.svg?v=3" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<link rel="stylesheet" href="../assets/components.css?v=3">
+<script src="../assets/xp.js?v=3"></script>
+<script src="../assets/visuals.js?v=3"></script>
+<script src="../assets/quiz.js?v=3"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Missão 5 de 5</span>
+  <h1>O chefão final</h1>
+  <p class="subtitle">Tudo misturado, igual na prova. A cada partida o chefão sorteia 12 desafios novos. ⏱ 15 minutos.</p>
+
+  <div class="card key">
+    <h3>🗺 Seus 4 poderes</h3>
+    <ol>
+      <li><strong>Fração → %</strong>: leve o de baixo até 100. <span class="frac"><span>7</span><span>20</span></span> × 5 = <span class="frac"><span>35</span><span>100</span></span> = 35%.</li>
+      <li><strong>% → fração</strong>: 100 embaixo e encolha. 40% = <span class="frac"><span>40</span><span>100</span></span> → <span class="frac"><span>4</span><span>10</span></span> → <span class="frac"><span>2</span><span>5</span></span>.</li>
+      <li><strong>% de uma quantidade</strong>: bloco de 10% e atalhos. 30% de 200 = 3 × 20 = 60.</li>
+      <li><strong>Desconto e aumento</strong>: ache a % e tire ou some. 60 com 30% off = 60 − 18 = 42.</li>
+    </ol>
+    <p>Esqueceu algum? A <a href="../reference/fracoes-e-porcentagem.html">folha de consulta</a> tem tudo. Mas tente lembrar antes de olhar!</p>
+  </div>
+
+  <h2>👾 O chefão final</h2>
+  <p>12 desafios sorteados, misturando os 4 poderes. Pode usar papel. Jogue de novo em outro dia: as perguntas mudam!</p>
+  <div id="boss"></div>
+
+  <div class="card tip">
+    <h3>📅 Plano até a prova (24/11)</h3>
+    <p>Estudar um pouco em dias diferentes funciona melhor do que estudar muito na véspera.<sup class="cite"><a href="#fontes">[1]</a></sup></p>
+    <ul>
+      <li><strong>Hoje</strong>: uma partida do chefão final.</li>
+      <li><strong>Amanhã</strong>: refaça a Missão 2 (o caminho de volta).</li>
+      <li><strong>Depois de amanhã</strong>: outra partida do chefão final.</li>
+      <li><strong>Dia seguinte</strong>: leia a folha de consulta e faça as missões bônus em voz alta.</li>
+      <li><strong>Véspera (23/11)</strong>: uma última partida, leve. Depois descanse e durma cedo!</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📝 Dicas para o dia da prova</h3>
+    <ul>
+      <li>Leia a pergunta <strong>duas vezes</strong>: pede o desconto ou o preço final?</li>
+      <li>Fração na resposta? <strong>Veja se ainda dá para encolher.</strong></li>
+      <li>Desconto → o preço fica <strong>menor</strong>. Aumento → fica <strong>maior</strong>.</li>
+      <li>Nunca junte os números: <span class="frac"><span>3</span><span>4</span></span> <strong>não</strong> é 34%!</li>
+      <li>Travou numa questão? Pule e volte depois.</li>
+    </ul>
+  </div>
+
+  <div class="card ask">
+    <h3>🙋 Ficou alguma dúvida?</h3>
+    <p>Peça para um adulto abrir o Claude e pergunte o que quiser. Ele é o seu professor nessas missões, e nenhuma pergunta é boba.</p>
+  </div>
+
+  <div class="card source" id="fontes">
+    <h3>📺 Para ver mais</h3>
+    <p><strong>Recomendado:</strong> <a href="https://pt.khanacademy.org/">Khan Academy em português</a>. Os exercícios de “porcentagem” de lá são ótimos para treino extra.</p>
+    <ol>
+      <li>Sobre estudar espaçado: Dunlosky et al. (2013), “Improving Students’ Learning With Effective Learning Techniques”, <em>Psychological Science in the Public Interest</em>. Prática espaçada e testes de recordação estão entre as técnicas de estudo mais eficazes.</li>
+    </ol>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0004-a-loja-de-skins.html">← Missão 4</a>
+    <a href="../reference/fracoes-e-porcentagem.html">📄 Folha de consulta</a>
+  </nav>
+
+  <footer>Lição 0005 · Frações e porcentagem · feita para a Vicky</footer>
+</main>
+
+<script>
+  const F = (a, b) => '<span class="frac"><span>' + a + '</span><span>' + b + '</span></span>';
+  const FP = 'fração → %', PF = '% → fração', PQ = '% de', DA = 'desconto/aumento', CP = 'comparar';
+
+  XP.mount(document.getElementById('xp'));
+
+  Quiz.mount(document.getElementById('boss'), [
+    // Fração → %
+    { tag: FP, text: F(1, 4) + ' = ?', input: true, answer: ['25'], suffix: '%', hint: '4 × 25 = 100.', explain: '1 × 25 = 25 → 25%.', grid: 25 },
+    { tag: FP, text: F(7, 10) + ' = ?', input: true, answer: ['70'], suffix: '%', hint: '10 × 10 = 100.', explain: '7 × 10 = 70 → 70%.', grid: 70 },
+    { tag: FP, text: F(3, 20) + ' = ?', input: true, answer: ['15'], suffix: '%', hint: '20 × 5 = 100.', explain: '3 × 5 = 15 → 15%.', grid: 15 },
+    { tag: FP, text: F(12, 25) + ' = ?', input: true, answer: ['48'], suffix: '%', hint: '25 × 4 = 100.', explain: '12 × 4 = 48 → 48%.', grid: 48 },
+    { tag: FP, text: F(1, 50) + ' = ?', options: ['50%', '2%', '1%', '5%'], answer: 1, hint: '50 × 2 = 100.', explain: '1 × 2 = 2 → 2%.', grid: 2 },
+    // % → fração
+    { tag: PF, text: '<strong>20%</strong> em fração, na forma mais simples:', fraction: [1, 5], hint: F(20, 100) + ' ÷ 10 → ' + F(2, 10) + '. Ainda dá?', explain: F(20, 100) + ' → ' + F(2, 10) + ' → ' + F(1, 5) + '.', grid: 20 },
+    { tag: PF, text: '<strong>75%</strong> em fração, na forma mais simples:', fraction: [3, 4], hint: F(75, 100) + ': os dois dividem por 25.', explain: F(75, 100) + ' ÷ 25 → ' + F(3, 4) + '.', grid: 75 },
+    { tag: PF, text: '<strong>45%</strong> em fração, na forma mais simples:', fraction: [9, 20], hint: F(45, 100) + ': 45 termina em 5, divida os dois por 5.', explain: F(45, 100) + ' ÷ 5 → ' + F(9, 20) + '.', grid: 45 },
+    { tag: PF, text: '<strong>8%</strong> em fração, na forma mais simples:', fraction: [2, 25], hint: F(8, 100) + ': os dois são pares. Divida por 2, e de novo por 2.', explain: F(8, 100) + ' → ' + F(4, 50) + ' → ' + F(2, 25) + '.', grid: 8 },
+    { tag: PF, text: '<strong>65%</strong> em fração, na forma mais simples:', fraction: [13, 20], hint: F(65, 100) + ': 65 termina em 5, divida os dois por 5.', explain: F(65, 100) + ' ÷ 5 → ' + F(13, 20) + '.', grid: 65 },
+    { tag: PF, text: '<strong>50%</strong> é igual a qual fração?', options: [F(5, 1), F(1, 5), F(1, 2), F(2, 5)], answer: 2, hint: F(50, 100) + ': metade!', explain: F(50, 100) + ' = ' + F(1, 2) + '.', grid: 50 },
+    // % de uma quantidade
+    { tag: PQ, text: 'Quanto é <strong>10% de 430</strong>?', input: true, answer: ['43'], hint: '10% = dividir por 10.', explain: '430 ÷ 10 = 43.' },
+    { tag: PQ, text: 'Quanto é <strong>25% de 60</strong>?', input: true, answer: ['15'], hint: 'Metade da metade.', explain: 'Metade de 60 = 30; metade de 30 = 15.' },
+    { tag: PQ, text: 'Quanto é <strong>75% de 40</strong>?', options: ['30', '35', '10', '25'], answer: 0, hint: '75% = 50% + 25%.', explain: '50% de 40 = 20; 25% = 10; 20 + 10 = 30.' },
+    { tag: PQ, text: 'Quanto é <strong>5% de 300</strong>?', input: true, answer: ['15'], hint: 'Ache 10% e pegue a metade.', explain: '10% de 300 = 30; metade = 15.' },
+    { tag: PQ, text: 'Quanto é <strong>1% de 900</strong>?', input: true, answer: ['9'], hint: '1% = dividir por 100.', explain: '900 ÷ 100 = 9.' },
+    { tag: PQ, text: 'Quanto é <strong>30% de 50</strong>?', input: true, answer: ['15'], hint: '10% de 50 = 5. Quantos blocos?', explain: '3 × 5 = 15.' },
+    // Desconto e aumento
+    { tag: DA, text: 'Uma coroa de <strong>120 moedas</strong> tem <strong>25% de desconto</strong>. Qual o preço final?', input: true, answer: ['90'], hint: '25% de 120 = metade da metade = 30.', explain: '120 − 30 = 90 moedas.' },
+    { tag: DA, text: 'Um escudo de <strong>70 moedas</strong> tem <strong>10% de desconto</strong>. Qual o preço final?', input: true, answer: ['63'], hint: '10% de 70 = 7.', explain: '70 − 7 = 63 moedas.' },
+    { tag: DA, text: 'Uma poção de <strong>40 moedas</strong> ficou <strong>50% mais cara</strong>. Qual o novo preço?', options: ['20', '90', '60', '45'], answer: 2, hint: '50% de 40 = metade. Aumento: some.', explain: '50% de 40 = 20; 40 + 20 = 60 moedas.' },
+    { tag: DA, text: 'Uma skin de <strong>250 moedas</strong> tem <strong>20% de desconto</strong>. Qual o preço final?', input: true, answer: ['200'], hint: '10% de 250 = 25; 20% = 50.', explain: '250 − 50 = 200 moedas.' },
+    { tag: DA, text: 'Um item baixou de <strong>80</strong> para <strong>60 moedas</strong>. Qual foi o desconto em %?', options: ['20%', '60%', '25%', '75%'], answer: 2, hint: 'Baixou 20 de 80. Que fração é ' + F(20, 80) + '? Encolha e leve até 100.', explain: F(20, 80) + ' = ' + F(1, 4) + ' = 25%.' },
+    // Comparar e problemas
+    { tag: CP, text: 'Qual vale mais: ' + F(2, 5) + ' ou <strong>35%</strong>?', options: ['2/5', '35%', 'Iguais', 'Nenhum'], answer: 0, hint: 'Transforme ' + F(2, 5) + ' em porcentagem.', explain: F(2, 5) + ' = 40%, que é mais que 35%.', grid: 40 },
+    { tag: CP, text: 'Numa turma de <strong>20 alunos</strong>, <strong>15</strong> gostam de games. Que porcentagem da turma é essa?', input: true, answer: ['75'], suffix: '%', hint: 'A fração é ' + F(15, 20) + '. Leve até 100.', explain: F(15, 20) + ' × 5 = ' + F(75, 100) + ' = 75%.', grid: 75 },
+  ], { id: '0005', title: '👾 Chefão final', sample: 12 });
+</script>
+</body>
+</html>
