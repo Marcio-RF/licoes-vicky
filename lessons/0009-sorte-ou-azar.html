@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 9 · Sorte ou azar</title>
+<link rel="icon" href="../assets/icon.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="../assets/components.css?v=4">
+<script src="../assets/xp.js?v=4"></script>
+<script src="../assets/visuals.js?v=4"></script>
+<script src="../assets/quiz.js?v=4"></script>
+<script src="../assets/charts.js?v=4"></script>
+<script src="../assets/mundo2.js?v=4"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Mundo 2 · Missão 9</span>
+  <h1>Sorte ou azar</h1>
+  <p class="subtitle">Qual é a chance de o baú soltar um item lendário? Probabilidade é a matemática da sorte, e as respostas vêm nos 3 jeitos. ⏱ 25 minutos.</p>
+
+  <h2>🔁 Retomada</h2>
+  <div id="warmup"></div>
+
+  <h2>🎲 A fórmula da sorte</h2>
+  <div class="card key">
+    <h3>🔑 Probabilidade = casos favoráveis ÷ casos possíveis</h3>
+    <ul>
+      <li><strong>Casos possíveis</strong>: tudo o que <strong>pode</strong> acontecer (fica embaixo).</li>
+      <li><strong>Casos favoráveis</strong>: o que você <strong>quer</strong> que aconteça (fica em cima).</li>
+    </ul>
+    <p>Dado de 6 faces, sair número <strong>par</strong>: os pares são 2, 4 e 6 (3 favoráveis) num total de 6 possíveis.</p>
+    <div class="eq"><span><span class="frac"><span>3</span><span>6</span></span></span><span class="op">=</span><span><span class="frac"><span>1</span><span>2</span></span></span><span class="op">=</span><span>0,5</span><span class="op">=</span><span class="hl">50%</span></div>
+  </div>
+
+  <div class="card tip">
+    <h3>🌡 O termômetro da chance</h3>
+    <table class="freq">
+      <tr><th>Chance</th><th>Quer dizer</th><th>Exemplo</th></tr>
+      <tr><td>0 = 0%</td><td><strong>Impossível</strong></td><td>Sair 7 num dado</td></tr>
+      <tr><td><span class="frac"><span>1</span><span>2</span></span> = 0,5 = 50%</td><td>Meio a meio</td><td>Cara na moeda</td></tr>
+      <tr><td>1 = 100%</td><td><strong>Certo</strong></td><td>Sair menos que 7 num dado</td></tr>
+    </table>
+    <p>Probabilidade nunca passa de 100% e nunca é negativa.</p>
+  </div>
+
+  <div class="card key">
+    <h3>💎 Exemplo de loot</h3>
+    <p>Um baú tem <strong>20 itens</strong>: 1 lendário, 4 raros e 15 comuns.</p>
+    <table class="freq">
+      <tr><th>Item</th><th>Fração</th><th>Decimal</th><th>%</th></tr>
+      <tr><td>Lendário</td><td><span class="frac"><span>1</span><span>20</span></span></td><td>0,05</td><td>5%</td></tr>
+      <tr><td>Raro</td><td><span class="frac"><span>4</span><span>20</span></span> = <span class="frac"><span>1</span><span>5</span></span></td><td>0,2</td><td>20%</td></tr>
+      <tr><td>Comum</td><td><span class="frac"><span>15</span><span>20</span></span> = <span class="frac"><span>3</span><span>4</span></span></td><td>0,75</td><td>75%</td></tr>
+      <tr><th>Total</th><th>1</th><th>1</th><th>100%</th></tr>
+    </table>
+    <p>⚠ Antes de fazer a fração, <strong>some o total</strong>. Se a pergunta diz “3 vermelhas, 5 azuis e 2 verdes”, o total é 10.</p>
+    <p>💡 <strong>“NÃO ser”</strong>: chance de NÃO ser vermelha = todas as que não são vermelhas ÷ total. Ou: 100% − chance de ser vermelha.</p>
+  </div>
+
+  <h2>👾 O chefão da sorte</h2>
+  <p>19 desafios, quase todos nos 3 jeitos. Primeiro descubra o total!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Pegue um dado (ou imagine um). Diga a chance de sair <strong>número maior que 4</strong>. Dica: essa não fecha em 100, mas a fração você consegue!</p>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0008-amplitude-e-media.html">← Missão 8</a>
+    <a href="../reference/estatistica-e-probabilidade.html">📄 Folha de consulta</a>
+    <a href="0010-diagrama-de-venn.html">Missão 10 →</a>
+  </nav>
+
+  <footer>Lição 0009 · Estatística e probabilidade · feita para a Vicky</footer>
+</main>
+
+<script>
+  XP.mount(document.getElementById('xp'));
+
+  Quiz.mount(document.getElementById('warmup'), [
+    M2.m8[0],
+    M2.m8[9],
+    M2.m7[16],
+  ], { id: '0009-retomada', title: '🔁 Retomada', xp: 5 });
+
+  Quiz.mount(document.getElementById('boss'), M2.m9, { id: '0009', title: '👾 Chefão' });
+</script>
+</body>
+</html>

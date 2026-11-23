@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 8 · Amplitude e média</title>
+<link rel="icon" href="../assets/icon.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="../assets/components.css?v=4">
+<script src="../assets/xp.js?v=4"></script>
+<script src="../assets/visuals.js?v=4"></script>
+<script src="../assets/quiz.js?v=4"></script>
+<script src="../assets/charts.js?v=4"></script>
+<script src="../assets/mundo2.js?v=4"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Mundo 2 · Missão 8</span>
+  <h1>Amplitude e média</h1>
+  <p class="subtitle">Dois números que resumem uma lista inteira: o quanto ela se espalha e o seu “meio de campo”. ⏱ 20 minutos.</p>
+
+  <h2>🔁 Retomada</h2>
+  <div id="warmup"></div>
+
+  <h2>📏 Amplitude: do menor ao maior</h2>
+  <div class="card key">
+    <h3>🔑 Amplitude = maior − menor</h3>
+    <p>Pontos de 5 partidas: <strong>12, 30, 18, 25, 9</strong>.</p>
+    <div class="eq"><span>30</span><span class="op">−</span><span>9</span><span class="op">=</span><span class="hl">21</span></div>
+    <p>A amplitude mostra o quanto os dados estão <strong>espalhados</strong>. Amplitude pequena quer dizer que os valores estão parecidos; amplitude grande, que estão bem diferentes.</p>
+    <p>⚠ <strong>Armadilha:</strong> não é o último menos o primeiro! Procure o <strong>maior</strong> e o <strong>menor</strong> da lista inteira, estejam onde estiverem.</p>
+    <p>🌡 Com temperatura é igual: máxima 31° e mínima 12° → amplitude térmica de <strong>19°</strong>.</p>
+  </div>
+
+  <h2>⚖ Média: dividir igualmente</h2>
+  <div class="card key">
+    <h3>🔑 Média = soma ÷ quantidade</h3>
+    <p>Notas: <strong>7, 9, 8, 6, 10</strong> (são 5 notas).</p>
+    <div class="eq"><span>7+9+8+6+10 = 40</span><span class="op">→</span><span>40 ÷ 5</span><span class="op">=</span><span class="hl">8</span></div>
+    <p>Imagine juntar todas as moedas do clã num baú e dividir igualmente entre os jogadores: cada um fica com <strong>a média</strong>.</p>
+    <p>⚠ <strong>Armadilha:</strong> não se esqueça de <strong>dividir</strong>! A soma (40) não é a média.</p>
+    <p>💡 Caminho de volta: se a média de 3 partidas foi 10, o total foi <strong>10 × 3 = 30</strong>.</p>
+  </div>
+
+  <h2>👾 O chefão da amplitude</h2>
+  <p>16 desafios. Pode usar papel para as somas!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Pergunte a idade de 3 pessoas da casa. Calcule a <strong>amplitude</strong> e a <strong>média</strong> das idades.</p>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0007-lendo-graficos.html">← Missão 7</a>
+    <a href="../reference/estatistica-e-probabilidade.html">📄 Folha de consulta</a>
+    <a href="0009-sorte-ou-azar.html">Missão 9 →</a>
+  </nav>
+
+  <footer>Lição 0008 · Estatística e probabilidade · feita para a Vicky</footer>
+</main>
+
+<script>
+  XP.mount(document.getElementById('xp'));
+
+  Quiz.mount(document.getElementById('warmup'), [
+    M2.m7[2],
+    M2.m7[15],
+    M2.m6[1],
+  ], { id: '0008-retomada', title: '🔁 Retomada', xp: 5 });
+
+  Quiz.mount(document.getElementById('boss'), M2.m8, { id: '0008', title: '👾 Chefão' });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 11 · O chefão dos dados</title>
+<link rel="icon" href="../assets/icon.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="../assets/components.css?v=4">
+<script src="../assets/xp.js?v=4"></script>
+<script src="../assets/visuals.js?v=4"></script>
+<script src="../assets/quiz.js?v=4"></script>
+<script src="../assets/charts.js?v=4"></script>
+<script src="../assets/mundo2.js?v=4"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Mundo 2 · Missão 11</span>
+  <h1>O chefão dos dados</h1>
+  <p class="subtitle">Tudo do Mundo 2 misturado, igual na prova. A cada partida o chefão sorteia 20 desafios. ⏱ 20 minutos.</p>
+
+  <div class="card key">
+    <h3>🗺 Seus 6 poderes</h3>
+    <ol>
+      <li><strong>3 jeitos</strong>: parte/total → encolha → leve até 100 → ÷ 100. <span class="frac"><span>6</span><span>20</span></span> = <span class="frac"><span>3</span><span>10</span></span> = 0,3 = 30%.</li>
+      <li><strong>Variável</strong>: palavra/categoria = qualitativa; número de contar ou medir = quantitativa.</li>
+      <li><strong>Gráficos</strong>: barras para comparar, linhas para o tempo, pizza para partes do todo.</li>
+      <li><strong>Amplitude</strong> = maior − menor. <strong>Média</strong> = soma ÷ quantidade.</li>
+      <li><strong>Probabilidade</strong> = favoráveis ÷ possíveis (de 0% a 100%).</li>
+      <li><strong>Venn</strong>: comece pelo meio; “só” é fora do meio.</li>
+    </ol>
+    <p>Esqueceu algum? A <a href="../reference/estatistica-e-probabilidade.html">folha de consulta</a> tem tudo. Mas tente lembrar antes de olhar!</p>
+  </div>
+
+  <h2>👾 O chefão dos dados</h2>
+  <p>20 desafios sorteados. Pode usar papel. Errou de primeira? Anote o número e confira na folha de consulta.</p>
+  <div id="boss"></div>
+
+  <div class="card tip">
+    <h3>📝 Dicas para a prova</h3>
+    <ul>
+      <li>O professor quer <strong>fração, decimal e porcentagem</strong>: escreva os 3, lado a lado.</li>
+      <li>Fração: <strong>veja se ainda dá para encolher.</strong></li>
+      <li>5% = <strong>0,05</strong> (não 0,5!).</li>
+      <li>Probabilidade: <strong>some o total primeiro</strong>.</li>
+      <li>Venn: comece pelo <strong>meio</strong>; leia a palavra <strong>“só”</strong>.</li>
+      <li>Gráfico: leia o <strong>título</strong> antes de tudo.</li>
+    </ul>
+  </div>
+
+  <div class="card ask">
+    <h3>🙋 Ficou alguma dúvida?</h3>
+    <p>Peça para um adulto abrir o Claude e pergunte o que quiser. Nenhuma pergunta é boba.</p>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0010-diagrama-de-venn.html">← Missão 10</a>
+    <a href="../reference/estatistica-e-probabilidade.html">📄 Folha de consulta</a>
+  </nav>
+
+  <footer>Lição 0011 · Estatística e probabilidade · feita para a Vicky</footer>
+</main>
+
+<script>
+  XP.mount(document.getElementById('xp'));
+  Quiz.mount(document.getElementById('boss'), M2.todas(), { id: '0011', title: '👾 Chefão dos dados', sample: 20 });
+</script>
+</body>
+</html>

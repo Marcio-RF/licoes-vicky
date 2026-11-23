@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 10 · Diagrama de Venn</title>
+<link rel="icon" href="../assets/icon.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="../assets/components.css?v=4">
+<script src="../assets/xp.js?v=4"></script>
+<script src="../assets/visuals.js?v=4"></script>
+<script src="../assets/quiz.js?v=4"></script>
+<script src="../assets/charts.js?v=4"></script>
+<script src="../assets/mundo2.js?v=4"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Mundo 2 · Missão 10</span>
+  <h1>Diagrama de Venn</h1>
+  <p class="subtitle">Dois círculos que se cruzam e resolvem o mistério de quem gosta de duas coisas ao mesmo tempo. ⏱ 25 minutos.</p>
+
+  <h2>🔁 Retomada</h2>
+  <div id="warmup"></div>
+
+  <h2>⭕ As 4 regiões</h2>
+  <div class="card key">
+    <div id="ex-venn"></div>
+    <ul>
+      <li><strong>Só Minecraft (14)</strong>: o pedaço do círculo roxo que <strong>não</strong> encosta no outro.</li>
+      <li><strong>Os dois (8)</strong>: o <strong>meio</strong>, onde os círculos se cruzam (interseção).</li>
+      <li><strong>Só Roblox (10)</strong>: o pedaço do círculo verde fora do meio.</li>
+      <li><strong>Nenhum (8)</strong>: fora dos círculos, mas dentro do retângulo da turma.</li>
+    </ul>
+    <p>Total: 14 + 8 + 10 + 8 = <strong>40</strong> alunos.</p>
+  </div>
+
+  <div class="card tip">
+    <h3>⚠ A pegadinha do meio</h3>
+    <p>“Quantos jogam <strong>Minecraft</strong>?” é o círculo <strong>inteiro</strong>: 14 + 8 = <strong>22</strong>. O meio também joga Minecraft!</p>
+    <p>“Quantos jogam <strong>só</strong> Minecraft?” é só a parte de fora do meio: <strong>14</strong>.</p>
+    <p>Leia com atenção a palavrinha <strong>“só”</strong>.</p>
+  </div>
+
+  <h2>🧩 Montando o Venn a partir do texto</h2>
+  <div class="card key">
+    <p>Turma de <strong>50</strong>: <strong>30</strong> gostam de pizza, <strong>25</strong> de hambúrguer e <strong>10</strong> dos dois.</p>
+    <ol>
+      <li><strong>Comece pelo meio</strong>: 10.</li>
+      <li><strong>Só pizza</strong>: 30 − 10 = <strong>20</strong>.</li>
+      <li><strong>Só hambúrguer</strong>: 25 − 10 = <strong>15</strong>.</li>
+      <li><strong>Nenhum</strong>: 50 − (20 + 10 + 15) = 50 − 45 = <strong>5</strong>.</li>
+    </ol>
+    <div id="ex-venn2"></div>
+    <p>Por que 30 + 25 = 55 passa de 50? Porque os 10 do meio foram contados <strong>duas vezes</strong>. Por isso a regra de ouro é <strong>começar sempre pelo meio</strong>.</p>
+  </div>
+
+  <div class="card tip">
+    <h3>🎲 Venn + probabilidade</h3>
+    <p>Sorteando um aluno dessa turma, qual a chance de ele não gostar de nenhum dos dois?</p>
+    <p><span class="frac"><span>5</span><span>50</span></span> = <span class="frac"><span>1</span><span>10</span></span> = 0,1 = <strong>10%</strong>. É uma região do Venn dividida pelo total.</p>
+  </div>
+
+  <h2>👾 O chefão dos círculos</h2>
+  <p>18 desafios. Comece sempre pelo meio!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Desenhe um Venn no papel: “gosta de chocolate” e “gosta de sorvete”, com as pessoas da sua casa. Quem fica no meio?</p>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0009-sorte-ou-azar.html">← Missão 9</a>
+    <a href="../reference/estatistica-e-probabilidade.html">📄 Folha de consulta</a>
+    <a href="0011-chefao-dos-dados.html">Chefão →</a>
+  </nav>
+
+  <footer>Lição 0010 · Estatística e probabilidade · feita para a Vicky</footer>
+</main>
+
+<script>
+  XP.mount(document.getElementById('xp'));
+  document.getElementById('ex-venn').innerHTML = Charts.venn({ a: 'Minecraft', b: 'Roblox', onlyA: 14, both: 8, onlyB: 10, out: 8, label: 'Turma de 40 alunos' });
+  document.getElementById('ex-venn2').innerHTML = Charts.venn({ a: 'Pizza', b: 'Hambúrguer', onlyA: 20, both: 10, onlyB: 15, out: 5, label: '50 alunos' });
+
+  Quiz.mount(document.getElementById('warmup'), [
+    M2.m9[7],
+    M2.m9[10],
+    M2.m8[7],
+  ], { id: '0010-retomada', title: '🔁 Retomada', xp: 5 });
+
+  Quiz.mount(document.getElementById('boss'), M2.m10, { id: '0010', title: '👾 Chefão' });
+</script>
+</body>
+</html>

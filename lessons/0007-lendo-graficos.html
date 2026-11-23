@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 7 · Lendo gráficos</title>
+<link rel="icon" href="../assets/icon.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="../assets/components.css?v=4">
+<script src="../assets/xp.js?v=4"></script>
+<script src="../assets/visuals.js?v=4"></script>
+<script src="../assets/quiz.js?v=4"></script>
+<script src="../assets/charts.js?v=4"></script>
+<script src="../assets/mundo2.js?v=4"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Mundo 2 · Missão 7</span>
+  <h1>Lendo gráficos</h1>
+  <p class="subtitle">Um gráfico é a tabela virando desenho. Cada tipo de gráfico tem uma função, como cada personagem num jogo. ⏱ 25 minutos.</p>
+
+  <h2>🔁 Retomada</h2>
+  <p>Antes de começar, 3 perguntas da Missão 6, sem olhar.</p>
+  <div id="warmup"></div>
+
+  <h2>🎭 As 3 classes de gráfico</h2>
+  <div class="card key">
+    <h3>📊 Barras ou colunas → comparar</h3>
+    <p>Comparam quantidades de <strong>categorias diferentes</strong>: votos de cada jogo, moedas de cada fase. <strong>Colunas</strong> são em pé e <strong>barras</strong> são deitadas, mas a função é a mesma. A mais comprida é a maior.</p>
+    <div id="ex-bar"></div>
+  </div>
+  <div class="card key">
+    <h3>📈 Linhas → mudança no tempo</h3>
+    <p>Mostram como algo <strong>muda ao longo do tempo</strong>: dias, meses, anos. A linha subindo quer dizer que aumentou; descendo, que diminuiu. Quanto mais inclinada, maior a mudança.</p>
+    <div id="ex-line"></div>
+  </div>
+  <div class="card key">
+    <h3>🍕 Pizza (setores) → partes de um todo</h3>
+    <p>Mostra como um <strong>total</strong> está dividido. A pizza inteira é <strong>100%</strong>; metade da pizza é 50%, um quarto é 25%. Aqui as respostas vêm nos <strong>3 jeitos</strong>.</p>
+    <div id="ex-pie"></div>
+    <p>Neste exemplo, a turma tem 20 alunos e 10 escolheram Pizza: <span class="frac"><span>10</span><span>20</span></span> = <span class="frac"><span>1</span><span>2</span></span> = 0,5 = 50%. É exatamente metade do círculo!</p>
+  </div>
+
+  <div class="card tip">
+    <h3>🔎 Como ler qualquer gráfico</h3>
+    <ol>
+      <li>Leia o <strong>título</strong>: do que o gráfico fala?</li>
+      <li>Veja os <strong>eixos</strong>: o que está embaixo (categorias ou tempo) e os números do lado.</li>
+      <li>Só depois responda. Pede <strong>diferença</strong>? Subtraia. Pede <strong>total</strong>? Some. Pede <strong>parte</strong>? Faça a fração.</li>
+    </ol>
+  </div>
+
+  <h2>🛠 Monte o gráfico</h2>
+  <div class="card">
+    <p>Pesquisa “pet favorito” na turma. Monte o gráfico de barras com os números da tabela (vale +10 XP):</p>
+    <div id="tabela-pet"></div>
+    <div id="montador"></div>
+  </div>
+
+  <h2>👾 O chefão dos gráficos</h2>
+  <p>19 desafios. Leia o título de cada gráfico antes de responder!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Diga em voz alta qual gráfico você usaria para: (1) a altura de uma planta em cada semana; (2) quantos alunos escolheram cada fruta; (3) como você divide as 24 horas do dia.</p>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="0006-a-pesquisa-do-cla.html">← Missão 6</a>
+    <a href="../reference/estatistica-e-probabilidade.html">📄 Folha de consulta</a>
+    <a href="0008-amplitude-e-media.html">Missão 8 →</a>
+  </nav>
+
+  <footer>Lição 0007 · Estatística e probabilidade · feita para a Vicky</footer>
+</main>
+
+<script>
+  XP.mount(document.getElementById('xp'));
+  document.getElementById('ex-bar').innerHTML = Charts.bar({ title: 'Votos por jogo', labels: ['Minecraft', 'Roblox', 'Fortnite'], values: [8, 6, 4], max: 10 });
+  document.getElementById('ex-line').innerHTML = Charts.line({ title: 'Meu XP por mês', labels: ['Ago', 'Set', 'Out', 'Nov'], values: [40, 60, 55, 90], max: 100 });
+  document.getElementById('ex-pie').innerHTML = Charts.pie({ title: 'Lanche favorito (20 alunos)', labels: ['Pizza: 10', 'Hambúrguer: 5', 'Salada: 5'], values: [10, 5, 5], showPct: true });
+  document.getElementById('tabela-pet').innerHTML = Charts.table({ head: ['Pet', 'Votos'], rows: [['🐶 Cachorro', 7], ['🐱 Gato', 5], ['🐟 Peixe', 2], ['🐹 Hamster', 4]] });
+  Montador.mount(document.getElementById('montador'), { labels: ['🐶', '🐱', '🐟', '🐹'], values: [7, 5, 2, 4], max: 10, done: 'Viu como o desenho mostra na hora que o cachorro ganhou e o peixe ficou em último?' });
+
+  Quiz.mount(document.getElementById('warmup'), [
+    M2.m6[5],
+    M2.m6[8],
+    M2.m6[12],
+  ], { id: '0007-retomada', title: '🔁 Retomada', xp: 5 });
+
+  Quiz.mount(document.getElementById('boss'), M2.m7, { id: '0007', title: '👾 Chefão' });
+</script>
+</body>
+</html>

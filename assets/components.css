@@ -102,3 +102,39 @@
 .loja-bar i.extra { background: var(--bad); color: #fff; }
 .loja-cap { text-align: center; color: var(--muted); margin-top: 4px; }
 .loja-msg { font-weight: 700; min-height: 1.4em; }
+
+/* ---------- Resposta nas 3 formas (fração = decimal = %) ---------- */
+.quiz .triple { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin: 8px 0 12px; }
+.quiz .t-box { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.quiz .t-lab { font-size: .85rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.quiz .t-eq { font-size: 1.6rem; font-weight: 900; color: var(--muted); }
+.quiz .t-dec { width: 5em; }
+.quiz .t-pct { display: inline-flex; align-items: center; gap: 4px; }
+.quiz .t-pct input { width: 4.2em; }
+.quiz .t-check { display: block; margin: 0 auto; }
+.quiz input.answer.good { border-color: var(--hp); background: #e9f8f0; }
+.quiz input.answer.bad { border-color: var(--bad); background: #fdecec; }
+
+/* ---------- Gráficos, tabelas e diagrama de Venn ---------- */
+.chart { display: block; width: 100%; max-width: 440px; margin: 10px auto; }
+.chart text { font-family: var(--font); font-size: 13px; fill: var(--ink); }
+.chart .ttl { font-weight: 800; font-size: 14px; }
+.chart .ax { stroke: var(--muted); stroke-width: 1.5; }
+.chart .gl { stroke: var(--line); stroke-width: 1; }
+.chart .val { font-weight: 800; }
+.chart .muted { fill: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; font-weight: 700; margin: 4px 0 8px; }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 6px; vertical-align: -2px; }
+table.freq { border-collapse: collapse; margin: 10px auto; font-size: 1.05rem; }
+table.freq th, table.freq td { border: 2px solid var(--line); padding: 6px 12px; text-align: center; }
+table.freq th { background: var(--bg); }
+table.freq .q { color: var(--brand); font-weight: 900; }
+
+/* Montar gráfico de barras com + e − */
+.montador .mb-rows { display: grid; grid-template-columns: auto 1fr auto; gap: 8px 10px; align-items: center; }
+.montador .mb-name { font-weight: 800; }
+.montador .mb-track { height: 30px; background: var(--bg); border-radius: 10px; overflow: hidden; border: 2px solid var(--line); }
+.montador .mb-fill { height: 100%; background: var(--brand); width: 0; transition: width .2s; display: flex; align-items: center; justify-content: flex-end; color: #fff; font-weight: 800; padding-right: 6px; box-sizing: border-box; }
+.montador .mb-btns { display: flex; gap: 6px; }
+.montador .mb-btns button { min-width: 48px; min-height: 44px; padding: 0; font-size: 1.3rem; }
+.montador .mb-msg { text-align: center; font-weight: 700; min-height: 1.6em; margin-top: 10px; }

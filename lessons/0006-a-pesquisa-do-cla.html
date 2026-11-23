@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missão 6 · A pesquisa do clã</title>
+<link rel="icon" href="../assets/icon.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="../assets/components.css?v=4">
+<script src="../assets/xp.js?v=4"></script>
+<script src="../assets/visuals.js?v=4"></script>
+<script src="../assets/quiz.js?v=4"></script>
+<script src="../assets/charts.js?v=4"></script>
+<script src="../assets/mundo2.js?v=4"></script>
+</head>
+<body>
+<main>
+  <div id="xp"></div>
+
+  <span class="mission-tag">Mundo 2 · Missão 6</span>
+  <h1>A pesquisa do clã</h1>
+  <p class="subtitle">Estatística começa com uma pergunta para um monte de gente. Aqui você aprende a organizar as respostas e a escrever cada parte de <strong>3 jeitos</strong>. ⏱ 25 minutos.</p>
+
+  <h2>🔓 Novo poder: o 3º jeito, o decimal</h2>
+  <p>Você já sabe escrever uma parte como <strong>fração</strong> e como <strong>porcentagem</strong>. O professor quer as respostas de <strong>3 jeitos</strong>, então falta o <strong>decimal</strong>. E ele é fácil: porcentagem é “de 100”, e o decimal é a mesma coisa escrita com vírgula.</p>
+  <div class="card key">
+    <h3>🔑 % → decimal: divida por 100</h3>
+    <p>A vírgula anda <strong>2 casas para a esquerda</strong>:</p>
+    <div class="eq"><span>25%</span><span class="op">=</span><span><span class="frac"><span>25</span><span>100</span></span></span><span class="op">=</span><span class="hl">0,25</span></div>
+    <table class="freq">
+      <tr><th>Porcentagem</th><th>Decimal</th><th>Fração</th></tr>
+      <tr><td>50%</td><td>0,5</td><td><span class="frac"><span>1</span><span>2</span></span></td></tr>
+      <tr><td>25%</td><td>0,25</td><td><span class="frac"><span>1</span><span>4</span></span></td></tr>
+      <tr><td>75%</td><td>0,75</td><td><span class="frac"><span>3</span><span>4</span></span></td></tr>
+      <tr><td>20%</td><td>0,2</td><td><span class="frac"><span>1</span><span>5</span></span></td></tr>
+      <tr><td>10%</td><td>0,1</td><td><span class="frac"><span>1</span><span>10</span></span></td></tr>
+      <tr><td>5%</td><td><strong>0,05</strong></td><td><span class="frac"><span>1</span><span>20</span></span></td></tr>
+      <tr><td>100%</td><td>1</td><td><span class="frac"><span>1</span><span>1</span></span> (o inteiro)</td></tr>
+    </table>
+    <p>⚠ <strong>Armadilha:</strong> 5% é <strong>0,05</strong>, não 0,5. Precisa do zero para a vírgula andar 2 casas. E o caminho de volta, decimal → %, é multiplicar por 100: 0,4 = 40%.</p>
+  </div>
+  <div class="card tip">
+    <h3>🧭 Receita das 3 formas</h3>
+    <ol>
+      <li><strong>Fração</strong>: parte em cima, total embaixo. Encolha até a forma mais simples.</li>
+      <li><strong>Porcentagem</strong>: leve o de baixo até 100 (o seu poder da Missão 1).</li>
+      <li><strong>Decimal</strong>: porcentagem ÷ 100.</li>
+    </ol>
+    <p>Exemplo: 6 de 20 alunos → <span class="frac"><span>6</span><span>20</span></span> → <span class="frac"><span>3</span><span>10</span></span> = <span class="frac"><span>30</span><span>100</span></span> = <strong>30%</strong> = <strong>0,3</strong>.</p>
+    <p>No quiz, essas perguntas têm <strong>3 caixas</strong>. Caixa certa fica verde; a errada fica vermelha para você corrigir.</p>
+  </div>
+  <div id="ponte"></div>
+
+  <h2>🔍 O que é uma pesquisa</h2>
+  <p>O líder do clã quer saber qual é o jogo favorito da escola. Perguntar para todo mundo dá muito trabalho, então ele pergunta para um grupo menor.</p>
+  <div class="card key">
+    <h3>🔑 População e amostra</h3>
+    <ul>
+      <li><strong>População</strong>: o grupo <strong>inteiro</strong> sobre o qual queremos saber (todos os 400 alunos da escola).</li>
+      <li><strong>Amostra</strong>: a <strong>parte</strong> da população que foi realmente perguntada (os 50 que responderam).</li>
+    </ul>
+  </div>
+
+  <h2>🏷 Variável: qualitativa ou quantitativa?</h2>
+  <p>A <strong>variável</strong> é o que a pesquisa quer saber: a cor favorita, a idade, o jogo preferido… E existem 2 tipos:</p>
+  <div class="card key">
+    <h3>🔑 Os 2 tipos de variável</h3>
+    <ul>
+      <li><strong>Qualitativa</strong> → a resposta é uma <strong>qualidade, uma palavra, uma categoria</strong>. Ex.: cor favorita, jogo favorito, time, sabor de sorvete, tamanho da camiseta (P, M, G).</li>
+      <li><strong>Quantitativa</strong> → a resposta é um <strong>número</strong> que vem de <strong>contar ou medir</strong>. Ex.: idade, número de irmãos, altura, horas de jogo por semana.</li>
+    </ul>
+    <p>Truque: <strong>dá para fazer conta com a resposta?</strong> Dá para tirar a média das idades, mas não dá para tirar a média de “azul” e “verde”. Se dá conta, é quantitativa.</p>
+  </div>
+
+  <h2>📋 A tabela de frequência</h2>
+  <p>Depois da pesquisa, as respostas viram uma tabela. A <strong>frequência</strong> é quantas vezes cada resposta apareceu. A <strong>frequência relativa</strong> é que <strong>parte do total</strong> ela representa: aí entram os 3 jeitos!</p>
+  <div class="card tip">
+    <table class="freq">
+      <tr><th>Jogo favorito</th><th>Frequência</th><th>Frequência relativa</th></tr>
+      <tr><td>Minecraft</td><td>8</td><td><span class="frac"><span>8</span><span>20</span></span> = <span class="frac"><span>2</span><span>5</span></span> = 0,4 = 40%</td></tr>
+      <tr><td>Roblox</td><td>6</td><td><span class="frac"><span>3</span><span>10</span></span> = 0,3 = 30%</td></tr>
+      <tr><td>Fortnite</td><td>4</td><td><span class="frac"><span>1</span><span>5</span></span> = 0,2 = 20%</td></tr>
+      <tr><td>Outros</td><td>2</td><td><span class="frac"><span>1</span><span>10</span></span> = 0,1 = 10%</td></tr>
+      <tr><th>Total</th><th>20</th><th>1 = 100%</th></tr>
+    </table>
+    <p>Repare: as frequências relativas sempre somam <strong>100%</strong>, que é o inteiro.</p>
+  </div>
+
+  <h2>👾 O chefão da pesquisa</h2>
+  <p>18 desafios: variáveis, população e amostra, e tabela de frequência. Pode usar papel!</p>
+  <div id="boss"></div>
+
+  <div class="card">
+    <h3>🧠 Missão bônus (sem olhar!)</h3>
+    <p>Invente uma pergunta de pesquisa <strong>qualitativa</strong> e outra <strong>quantitativa</strong> para fazer com a família. Depois diga em voz alta: <strong>5% em decimal?</strong></p>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="../reference/estatistica-e-probabilidade.html">📄 Folha de consulta</a>
+    <a href="0007-lendo-graficos.html">Missão 7 →</a>
+  </nav>
+
+  <footer>Lição 0006 · Estatística e probabilidade · feita para a Vicky</footer>
+</main>
+
+<script>
+  XP.mount(document.getElementById('xp'));
+
+  Quiz.mount(document.getElementById('ponte'), [
+    { text: '<strong>25%</strong> em decimal:', input: true, answer: ['0,25', '.25'], hint: '25 ÷ 100: a vírgula anda 2 casas para a esquerda.', explain: '25% = 0,25.' },
+    { text: '<strong>50%</strong> em decimal:', input: true, answer: ['0,5', '0,50', '.5'], hint: '50 ÷ 100.', explain: '50% = 0,50 = 0,5 (o zero no fim pode sair).' },
+    { text: '<strong>5%</strong> em decimal:', options: ['0,5', '0,05', '5,0', '0,005'], answer: 1, hint: 'A vírgula anda 2 casas. 5 tem só 1 algarismo… complete com zero.', explain: '5% = 0,05. Cuidado: 0,5 seria 50%!' },
+    { text: 'O decimal <strong>0,4</strong> é quantos por cento?', input: true, answer: ['40'], suffix: '%', hint: 'Decimal → %: × 100.', explain: '0,4 = 0,40 = 40%.' },
+    { text: 'O decimal <strong>0,08</strong> é quantos por cento?', input: true, answer: ['8'], suffix: '%', hint: '× 100: a vírgula anda 2 casas para a direita.', explain: '0,08 = 8%.' },
+    { text: 'Agora os 3 jeitos! <strong>3 de 4</strong> partes:', triple: [3, 4], hint: '4 × 25 = 100.' },
+    { text: '<strong>1 de 5</strong> partes, nos 3 jeitos:', triple: [1, 5], hint: '5 × 20 = 100.' },
+  ], { id: '0006-ponte', title: '🔓 Treino do decimal', xp: 5 });
+
+  Quiz.mount(document.getElementById('boss'), M2.m6, { id: '0006', title: '👾 Chefão' });
+</script>
+</body>
+</html>

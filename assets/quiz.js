@@ -120,6 +120,67 @@
           };
           btn.onclick = check;
           [top, bot].forEach((x) => x.addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); }));
+        } else if (q.triple) {
+          // Resposta nas 3 formas: fração (mais simples) | decimal | porcentagem.
+          // q.triple = [parte, total], ex.: [6, 24] -> 1/4 = 0,25 = 25%. Campo certo trava; errado fica para corrigir.
+          const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+          const [pn, pd] = q.triple;
+          const g = gcd(pn, pd), sn = pn / g, sd = pd / g;
+          const val = pn / pd;
+          body.innerHTML =
+            '<div class="triple">' +
+            '<label class="t-box"><span class="t-lab">Fração</span><span class="frac-input">' +
+            '<input class="answer" inputmode="numeric" autocomplete="off" aria-label="Fração: número de cima">' +
+            '<input class="answer" inputmode="numeric" autocomplete="off" aria-label="Fração: número de baixo">' +
+            '</span></label>' +
+            '<span class="t-eq">=</span>' +
+            '<label class="t-box"><span class="t-lab">Decimal</span><input class="answer t-dec" inputmode="decimal" autocomplete="off" placeholder="0,…" aria-label="Decimal"></label>' +
+            '<span class="t-eq">=</span>' +
+            '<label class="t-box"><span class="t-lab">Porcentagem</span><span class="t-pct"><input class="answer" inputmode="decimal" autocomplete="off" aria-label="Porcentagem"><span class="big">%</span></span></label>' +
+            '</div><button class="primary t-check">Conferir</button>';
+          const [top, bot, dec, pct] = body.querySelectorAll('input');
+          const btn = body.querySelector('.t-check');
+          const num = (s) => { const t = norm(s); return t === '' || isNaN(Number(t)) ? NaN : Number(t); };
+          const close = (a, b) => Math.abs(a - b) < 1e-9;
+          const ok = { f: false, d: false, p: false };
+          const mark = (els, good) => els.forEach((x) => { x.classList.toggle('good', good); x.classList.toggle('bad', !good); if (good) x.disabled = true; });
+          const check = () => {
+            if (done) return;
+            const a = parseInt(top.value, 10), b = parseInt(bot.value, 10);
+            if (!top.value.trim() || !bot.value.trim() || !dec.value.trim() || !pct.value.trim()) {
+              fb.className = 'feedback show no';
+              fb.innerHTML = 'Preencha <strong>os 3 jeitos</strong>: fração, decimal e porcentagem.';
+              return;
+            }
+            const tips = [];
+            if (!ok.f) {
+              if (b && a * pd === b * pn) {
+                if (gcd(a, b) === 1) ok.f = true;
+                else tips.push('A <strong>fração</strong> ' + a + '/' + b + ' está certa, mas ainda dá para encolher!');
+              } else tips.push('Confira a <strong>fração</strong>: é a parte em cima e o total embaixo.');
+              mark([top, bot], ok.f);
+            }
+            if (!ok.d) {
+              ok.d = close(num(dec.value), val);
+              if (!ok.d) tips.push('Confira o <strong>decimal</strong>: é a porcentagem ÷ 100 (a vírgula anda 2 casas para a esquerda).');
+              mark([dec], ok.d);
+            }
+            if (!ok.p) {
+              ok.p = close(num(pct.value), val * 100);
+              if (!ok.p) tips.push('Confira a <strong>porcentagem</strong>: leve o de baixo até 100.');
+              mark([pct], ok.p);
+            }
+            const given = (top.value || '?') + '/' + (bot.value || '?') + ' = ' + dec.value + ' = ' + pct.value + '%';
+            if (ok.f && ok.d && ok.p) { btn.disabled = true; finish(true, null, given); }
+            else finish(false, tips.join('<br>') + (q.hint ? '<br>💡 ' + q.hint : ''), given);
+          };
+          btn.onclick = check;
+          [top, bot, dec, pct].forEach((x) => x.addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); }));
+          if (!q.explain) {
+            const dStr = String(val).replace('.', ',');
+            const pStr = String(Math.round(val * 10000) / 100).replace('.', ',');
+            q.explain = (g > 1 ? pn + '/' + pd + ' → ' : '') + sn + '/' + sd + ' = ' + dStr + ' = ' + pStr + '%.';
+          }
         } else if (q.input) {
           body.innerHTML =
             '<div class="input-row"><input class="answer" inputmode="decimal" autocomplete="off" aria-label="Sua resposta"> ' +

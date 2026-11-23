@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folha de consulta · Estatística e probabilidade</title>
+<link rel="icon" href="../assets/icon.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="../assets/components.css?v=4">
+<script src="../assets/charts.js?v=4"></script>
+</head>
+<body>
+<main>
+  <h1>📄 Folha de consulta</h1>
+  <p class="subtitle">Mundo 2: estatística e probabilidade, numa página só.</p>
+
+  <div class="card key">
+    <h3>1 · Os 3 jeitos (fração = decimal = %)</h3>
+    <p>Parte em cima, total embaixo → encolha → leve o de baixo até 100 → ÷ 100 para o decimal.</p>
+    <p>6 de 20 → <span class="frac"><span>6</span><span>20</span></span> = <span class="frac"><span>3</span><span>10</span></span> = <span class="frac"><span>30</span><span>100</span></span> = <strong>0,3</strong> = <strong>30%</strong></p>
+    <table class="freq">
+      <tr><th>Fração</th><th>Decimal</th><th>%</th></tr>
+      <tr><td><span class="frac"><span>1</span><span>2</span></span></td><td>0,5</td><td>50%</td></tr>
+      <tr><td><span class="frac"><span>1</span><span>4</span></span></td><td>0,25</td><td>25%</td></tr>
+      <tr><td><span class="frac"><span>3</span><span>4</span></span></td><td>0,75</td><td>75%</td></tr>
+      <tr><td><span class="frac"><span>1</span><span>5</span></span></td><td>0,2</td><td>20%</td></tr>
+      <tr><td><span class="frac"><span>1</span><span>10</span></span></td><td>0,1</td><td>10%</td></tr>
+      <tr><td><span class="frac"><span>1</span><span>20</span></span></td><td>0,05</td><td>5%</td></tr>
+      <tr><td>1 (inteiro)</td><td>1</td><td>100%</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>2 · Pesquisa e variáveis</h3>
+    <ul>
+      <li><strong>População</strong>: o grupo inteiro. <strong>Amostra</strong>: a parte que respondeu.</li>
+      <li><strong>Qualitativa</strong>: a resposta é palavra/categoria (cor, jogo, time, tamanho P/M/G).</li>
+      <li><strong>Quantitativa</strong>: a resposta é número de contar ou medir (idade, irmãos, altura).</li>
+      <li><strong>Frequência</strong>: quantas vezes apareceu. <strong>Frequência relativa</strong>: frequência ÷ total (nos 3 jeitos). Todas juntas = 100%.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>3 · Gráficos</h3>
+    <ul>
+      <li>📊 <strong>Barras/colunas</strong>: comparar categorias.</li>
+      <li>📈 <strong>Linhas</strong>: mudança ao longo do tempo.</li>
+      <li>🍕 <strong>Pizza (setores)</strong>: partes de um todo (a pizza inteira = 100%).</li>
+    </ul>
+    <p>Leia o título → veja os eixos → diferença é subtrair, total é somar, parte é fração.</p>
+  </div>
+
+  <div class="card">
+    <h3>4 · Amplitude e média</h3>
+    <ul>
+      <li><strong>Amplitude</strong> = maior − menor. (12, 30, 18, 25, 9 → 30 − 9 = 21)</li>
+      <li><strong>Média</strong> = soma ÷ quantidade. (7, 9, 8, 6, 10 → 40 ÷ 5 = 8)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>5 · Probabilidade</h3>
+    <p><strong>Favoráveis ÷ possíveis.</strong> Some o total antes!</p>
+    <p>Dado, sair par: <span class="frac"><span>3</span><span>6</span></span> = <span class="frac"><span>1</span><span>2</span></span> = 0,5 = 50%.</p>
+    <p>Impossível = 0 = 0% · Certo = 1 = 100%.</p>
+  </div>
+
+  <div class="card">
+    <h3>6 · Diagrama de Venn</h3>
+    <div id="venn"></div>
+    <ol>
+      <li>Comece pelo <strong>meio</strong> (os dois).</li>
+      <li>Só A = A − meio. Só B = B − meio.</li>
+      <li>Nenhum = total − (só A + meio + só B).</li>
+    </ol>
+    <p>“Gosta de pizza” = círculo inteiro (20 + 10 = 30). “Gosta <strong>só</strong> de pizza” = 20.</p>
+  </div>
+
+  <nav class="lesson-nav">
+    <a href="../index.html">🗺 Mapa</a>
+    <a href="fracoes-e-porcentagem.html">📄 Folha do Mundo 1</a>
+  </nav>
+</main>
+<script>
+  document.getElementById('venn').innerHTML = Charts.venn({ a: 'Pizza', b: 'Hambúrguer', onlyA: 20, both: 10, onlyB: 15, out: 5, label: '50 alunos' });
+</script>
+</body>
+</html>
